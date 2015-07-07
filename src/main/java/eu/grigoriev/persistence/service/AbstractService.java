@@ -7,10 +7,10 @@ import eu.grigoriev.persistence.generic.GenericService;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -19,7 +19,7 @@ import java.util.List;
 @Transactional
 public abstract class AbstractService<Entity extends GenericEntity<PrimaryKey>, PrimaryKey extends Serializable> implements GenericService<Entity, PrimaryKey> {
 
-    @Resource(name = "postgresSessionFactory")
+    @Autowired
     protected SessionFactory sessionFactory;
 
     protected Class<Entity> entityClass;
