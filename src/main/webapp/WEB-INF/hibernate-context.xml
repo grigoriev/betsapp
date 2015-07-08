@@ -5,13 +5,13 @@
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-            http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
-            http://www.springframework.org/schema/tx
-            http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
-            http://www.springframework.org/schema/context
-            http://www.springframework.org/schema/context/spring-context.xsd">
+       http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <tx:annotation-driven transaction-manager="mysqlTransactionManager" />
+    <tx:annotation-driven transaction-manager="mysqlTransactionManager"/>
 
     <context:property-placeholder location="application.properties"/>
 
@@ -23,7 +23,7 @@
         </property>
     </bean>
 
-    <bean id="postgresSessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
+    <bean id="mysqlSessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
           p:dataSource-ref="mysqlDataSource"
           p:configLocation="/WEB-INF/hibernate.cfg.xml"
           p:packagesToScan="eu.grigoriev.persistence"/>
@@ -36,6 +36,6 @@
 
     <bean id="mysqlTransactionManager"
           class="org.springframework.orm.hibernate4.HibernateTransactionManager"
-          p:sessionFactory-ref="postgresSessionFactory"/>
+          p:sessionFactory-ref="mysqlSessionFactory"/>
 
 </beans>

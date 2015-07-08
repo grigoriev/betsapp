@@ -1,1 +1,1 @@
-# betsapp
+# bets
