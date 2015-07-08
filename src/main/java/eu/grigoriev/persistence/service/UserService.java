@@ -1,10 +1,8 @@
 package eu.grigoriev.persistence.service;
 
 import eu.grigoriev.persistence.entity.UserEntity;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Repository;
 
-@Service
-@Transactional
+@Repository
 public class UserService extends AbstractService<UserEntity, Integer> {
 }

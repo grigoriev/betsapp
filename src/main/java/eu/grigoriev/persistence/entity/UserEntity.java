@@ -23,6 +23,14 @@ public class UserEntity implements GenericEntity<Integer>, Serializable {
     @Column(name = "display")
     private String display;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private RoleEntity roleEntity;
+
+    @Override
+    public Integer getPK() {
+        return id;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -55,17 +63,26 @@ public class UserEntity implements GenericEntity<Integer>, Serializable {
         this.display = display;
     }
 
+    public RoleEntity getRoleEntity() {
+        return roleEntity;
+    }
+
+    public void setRoleEntity(RoleEntity roleEntity) {
+        this.roleEntity = roleEntity;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof UserEntity)) return false;
 
-        UserEntity user = (UserEntity) o;
+        UserEntity that = (UserEntity) o;
 
-        if (id != null ? !id.equals(user.id) : user.id != null) return false;
-        if (username != null ? !username.equals(user.username) : user.username != null) return false;
-        if (password != null ? !password.equals(user.password) : user.password != null) return false;
-        return !(display != null ? !display.equals(user.display) : user.display != null);
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (username != null ? !username.equals(that.username) : that.username != null) return false;
+        if (password != null ? !password.equals(that.password) : that.password != null) return false;
+        if (display != null ? !display.equals(that.display) : that.display != null) return false;
+        return !(roleEntity != null ? !roleEntity.equals(that.roleEntity) : that.roleEntity != null);
 
     }
 
@@ -75,21 +92,7 @@ public class UserEntity implements GenericEntity<Integer>, Serializable {
         result = 31 * result + (username != null ? username.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (display != null ? display.hashCode() : 0);
+        result = 31 * result + (roleEntity != null ? roleEntity.hashCode() : 0);
         return result;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", display='" + display + '\'' +
-                '}';
-    }
-
-    @Override
-    public Integer getPK() {
-        return id;
     }
 }
