@@ -11,7 +11,7 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <tx:annotation-driven transaction-manager="mysqlTransactionManager"/>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <context:property-placeholder location="application.properties"/>
 
@@ -23,19 +23,19 @@
         </property>
     </bean>
 
-    <bean id="mysqlSessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
-          p:dataSource-ref="mysqlDataSource"
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
+          p:dataSource-ref="dataSource"
           p:configLocation="/WEB-INF/hibernate.cfg.xml"
           p:packagesToScan="eu.grigoriev.persistence"/>
 
-    <bean id="mysqlDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"
           p:driverClassName="${mysql.jdbc.driverClassName}"
           p:url="${mysql.jdbc.url}"
           p:username="${mysql.jdbc.username}"
           p:password="${mysql.jdbc.password}"/>
 
-    <bean id="mysqlTransactionManager"
+    <bean id="transactionManager"
           class="org.springframework.orm.hibernate4.HibernateTransactionManager"
-          p:sessionFactory-ref="mysqlSessionFactory"/>
+          p:sessionFactory-ref="sessionFactory"/>
 
 </beans>

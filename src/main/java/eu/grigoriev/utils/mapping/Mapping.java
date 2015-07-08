@@ -15,4 +15,9 @@ public class Mapping {
     public static class SETTINGS {
         public static final String ROOT = "/settings";
     }
+
+    public static class TEST {
+        public static final String ROOT = "/test";
+        public static final String ADD_TEST_USER = "/add/test/user";
+    }
 }
