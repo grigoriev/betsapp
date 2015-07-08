@@ -3,7 +3,7 @@ package eu.grigoriev.persistence.generic;
 import java.io.Serializable;
 import java.util.List;
 
-public interface GenericService<Entity, PrimaryKey extends Serializable> {
+public interface GenericRepository<Entity, PrimaryKey extends Serializable> {
     Entity create(Entity newInstance);
 
     Entity save(Entity newInstance);

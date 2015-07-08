@@ -3,7 +3,7 @@ package eu.grigoriev.persistence.service;
 import eu.grigoriev.persistence.exception.EntityAlreadyExistsException;
 import eu.grigoriev.persistence.exception.NoSuchEntityException;
 import eu.grigoriev.persistence.generic.GenericEntity;
-import eu.grigoriev.persistence.generic.GenericService;
+import eu.grigoriev.persistence.generic.GenericRepository;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -17,7 +17,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 @Transactional
-public abstract class AbstractService<Entity extends GenericEntity<PrimaryKey>, PrimaryKey extends Serializable> implements GenericService<Entity, PrimaryKey> {
+public abstract class AbstractRepository<Entity extends GenericEntity<PrimaryKey>, PrimaryKey extends Serializable> implements GenericRepository<Entity, PrimaryKey> {
 
     @Autowired
     protected SessionFactory sessionFactory;
@@ -25,7 +25,7 @@ public abstract class AbstractService<Entity extends GenericEntity<PrimaryKey>, 
     protected Class<Entity> entityClass;
 
     @SuppressWarnings("unchecked")
-    public AbstractService() {
+    public AbstractRepository() {
         Type type = getClass().getGenericSuperclass();
         if (type instanceof ParameterizedType) {
             ParameterizedType parameterizedType = (ParameterizedType) type;
