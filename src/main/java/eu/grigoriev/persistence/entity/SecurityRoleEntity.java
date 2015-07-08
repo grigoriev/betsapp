@@ -6,8 +6,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "role")
-public class RoleEntity implements GenericEntity<Integer>, Serializable {
+@Table(name = "security_role")
+public class SecurityRoleEntity implements GenericEntity<Integer>, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,9 +41,9 @@ public class RoleEntity implements GenericEntity<Integer>, Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof RoleEntity)) return false;
+        if (!(o instanceof SecurityRoleEntity)) return false;
 
-        RoleEntity that = (RoleEntity) o;
+        SecurityRoleEntity that = (SecurityRoleEntity) o;
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
         return !(role != null ? !role.equals(that.role) : that.role != null);

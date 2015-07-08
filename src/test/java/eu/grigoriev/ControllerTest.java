@@ -1,5 +1,6 @@
 package eu.grigoriev;
 
+import eu.grigoriev.utils.security.Roles;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,8 +11,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -47,16 +46,16 @@ public class ControllerTest {
     }
 
     private void login() {
-        UserDetails userDetails = wac.getBean(InMemoryUserDetailsManager.class).loadUserByUsername("username");
-        Authentication authenticationToken = new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword(), userDetails.getAuthorities());
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority(Roles.USER));
+        Authentication authenticationToken = new UsernamePasswordAuthenticationToken("username", "password", authorities);
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
     }
 
     private void invalidRole() {
-        UserDetails userDetails = wac.getBean(InMemoryUserDetailsManager.class).loadUserByUsername("username");
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_INVALID"));
-        Authentication authenticationToken = new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword(), authorities);
+        Authentication authenticationToken = new UsernamePasswordAuthenticationToken("username", "password", authorities);
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
     }
 
