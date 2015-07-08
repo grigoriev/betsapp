@@ -43,7 +43,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         boolean accountNonLocked = !userEntity.isLocked();
 
         Collection<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(userEntity.getSecurityRole().getRole()));
+        authorities.add(new SimpleGrantedAuthority(userEntity.getSecurityRoleEntity().getRole()));
 
         return new User(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
     }

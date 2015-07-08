@@ -39,7 +39,8 @@ public class UserEntity implements GenericEntity<Integer>, Serializable {
     private boolean locked;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private SecurityRoleEntity securityRole;
+    @JoinColumn(name="security_role_id")
+    private SecurityRoleEntity securityRoleEntity;
 
     @Override
     public Integer getPK() {
@@ -102,12 +103,12 @@ public class UserEntity implements GenericEntity<Integer>, Serializable {
         this.locked = accountNonLocked;
     }
 
-    public SecurityRoleEntity getSecurityRole() {
-        return securityRole;
+    public SecurityRoleEntity getSecurityRoleEntity() {
+        return securityRoleEntity;
     }
 
-    public void setSecurityRole(SecurityRoleEntity securityRoleEntity) {
-        this.securityRole = securityRoleEntity;
+    public void setSecurityRoleEntity(SecurityRoleEntity securityRoleEntity) {
+        this.securityRoleEntity = securityRoleEntity;
     }
 
     @Override
@@ -124,7 +125,7 @@ public class UserEntity implements GenericEntity<Integer>, Serializable {
         if (username != null ? !username.equals(that.username) : that.username != null) return false;
         if (password != null ? !password.equals(that.password) : that.password != null) return false;
         if (display != null ? !display.equals(that.display) : that.display != null) return false;
-        return !(securityRole != null ? !securityRole.equals(that.securityRole) : that.securityRole != null);
+        return !(securityRoleEntity != null ? !securityRoleEntity.equals(that.securityRoleEntity) : that.securityRoleEntity != null);
 
     }
 
@@ -137,7 +138,7 @@ public class UserEntity implements GenericEntity<Integer>, Serializable {
         result = 31 * result + (enabled ? 1 : 0);
         result = 31 * result + (expired ? 1 : 0);
         result = 31 * result + (locked ? 1 : 0);
-        result = 31 * result + (securityRole != null ? securityRole.hashCode() : 0);
+        result = 31 * result + (securityRoleEntity != null ? securityRoleEntity.hashCode() : 0);
         return result;
     }
 }
