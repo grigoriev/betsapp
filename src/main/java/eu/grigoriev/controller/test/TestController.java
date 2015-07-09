@@ -52,7 +52,7 @@ public class TestController {
         userEntity.setDisplay("User Name");
         userEntity.setSecurityRoleEntity(securityRoleEntity);
 
-        usersRepository.create(userEntity);
+        usersRepository.save(userEntity);
 
         return userEntity;
     }

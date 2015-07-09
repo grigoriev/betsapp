@@ -1,13 +1,11 @@
 package eu.grigoriev.persistence.entity;
 
-import eu.grigoriev.persistence.generic.GenericEntity;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "security_role")
-public class SecurityRoleEntity implements GenericEntity<Integer>, Serializable {
+public class SecurityRoleEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,11 +14,6 @@ public class SecurityRoleEntity implements GenericEntity<Integer>, Serializable 
 
     @Column(name = "role")
     private String role;
-
-    @Override
-    public Integer getPK() {
-        return id;
-    }
 
     public Integer getId() {
         return id;

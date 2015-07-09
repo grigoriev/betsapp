@@ -1,21 +1,14 @@
 package eu.grigoriev.persistence.entity;
 
-import eu.grigoriev.persistence.generic.GenericEntity;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "team")
-public class TeamEntity implements GenericEntity<Integer>, Serializable {
+public class TeamEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
-
-    @Override
-    public Integer getPK() {
-        return id;
-    }
 }

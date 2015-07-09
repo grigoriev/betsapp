@@ -1,9 +1,5 @@
 package eu.grigoriev.persistence.generic;
 
-import eu.grigoriev.persistence.exception.EntityAlreadyExistsException;
-import eu.grigoriev.persistence.exception.NoSuchEntityException;
-import org.hibernate.Query;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
@@ -15,7 +11,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 @Transactional
-public abstract class AbstractRepository<Entity extends GenericEntity<PrimaryKey>, PrimaryKey extends Serializable> implements GenericRepository<Entity, PrimaryKey> {
+public abstract class AbstractRepository<Entity, PrimaryKey extends Serializable> implements GenericRepository<Entity, PrimaryKey> {
 
     @Autowired
     protected SessionFactory sessionFactory;
@@ -32,86 +28,50 @@ public abstract class AbstractRepository<Entity extends GenericEntity<PrimaryKey
         }
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public Entity create(Entity newInstance) {
-        Session session = sessionFactory.getCurrentSession();
-
-        boolean entityAlreadyExists = false;
-        try {
-            findById(newInstance.getPK());
-            entityAlreadyExists = true;
-        } catch (NoSuchEntityException e) {
-            session.save(newInstance);
-        }
-
-        if (entityAlreadyExists) {
-            throw new EntityAlreadyExistsException(newInstance.getPK().toString());
-        }
-        return newInstance;
-    }
-
-    @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public Entity save(Entity entity) {
-        Session session = sessionFactory.getCurrentSession();
-
-        session.saveOrUpdate(entity);
-
-        return entity;
+    public PrimaryKey save(Entity entity) {
+        return (PrimaryKey) sessionFactory.getCurrentSession().save(entity);
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public Entity findById(PrimaryKey primaryKey) {
-        if (primaryKey == null) {
-            throw new NoSuchEntityException("PK is null");
-        }
-
-        Session session = sessionFactory.getCurrentSession();
-
-        Entity entity = (Entity) session.get(entityClass, primaryKey);
-
-        if (entity == null) {
-            throw new NoSuchEntityException(primaryKey.toString());
-        }
-
-        return entity;
+        return (Entity) sessionFactory.getCurrentSession().get(entityClass, primaryKey);
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public List<Entity> findAll() {
-        Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from " + entityClass.getSimpleName());
-        return query.list();
+        return sessionFactory.getCurrentSession().createQuery("from " + entityClass.getSimpleName()).list();
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public Entity update(Entity transientObject) {
-        Session session = sessionFactory.getCurrentSession();
-        session.merge(transientObject);
-        session.update(transientObject);
-        session.flush();
-        return transientObject;
+        return (Entity) sessionFactory.getCurrentSession().merge(transientObject);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void delete(Entity entity) {
+        sessionFactory.getCurrentSession().delete(entity);
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void delete(PrimaryKey primaryKey) {
-        Session session = sessionFactory.getCurrentSession();
         Entity entity = findById(primaryKey);
-        session.delete(entity);
+        delete(entity);
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public long count() {
-        Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("select count(*) from " + entityClass.getSimpleName());
-        return (long) query.uniqueResult();
+        return (long) sessionFactory.getCurrentSession().createQuery("select count(*) from " + entityClass.getSimpleName()).uniqueResult();
     }
 }

@@ -1,7 +1,5 @@
 package eu.grigoriev.persistence.entity;
 
-import eu.grigoriev.persistence.generic.GenericEntity;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -13,7 +11,7 @@ import java.io.Serializable;
                 query = "from UserEntity user where user.username = :username"
         )
 })
-public class UserEntity implements GenericEntity<Integer>, Serializable {
+public class UserEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,11 +39,6 @@ public class UserEntity implements GenericEntity<Integer>, Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="security_role_id")
     private SecurityRoleEntity securityRoleEntity;
-
-    @Override
-    public Integer getPK() {
-        return id;
-    }
 
     public Integer getId() {
         return id;
