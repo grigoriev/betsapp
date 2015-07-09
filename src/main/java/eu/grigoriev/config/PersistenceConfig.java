@@ -3,7 +3,10 @@ package eu.grigoriev.config;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
@@ -15,14 +18,19 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
+@PropertySource({"classpath:persistence-mysql.properties"})
+@ComponentScan({"eu.grigoriev.persistence"})
 public class PersistenceConfig {
+
+    @Autowired
+    private Environment env;
 
     Properties hibernateProperties() {
         return new Properties() {
             {
-                setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
-                setProperty("hibernate.hbm2ddl.auto", "update");
-                setProperty("hibernate.show_sql", "false");
+                setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
+                setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
+                setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
             }
         };
     }
@@ -31,7 +39,7 @@ public class PersistenceConfig {
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan(new String[]{"eu.grigoriev.persistence"});
+        sessionFactory.setPackagesToScan(new String[]{"eu.grigoriev.persistence.entity"});
         sessionFactory.setHibernateProperties(hibernateProperties());
 
         return sessionFactory;
@@ -54,10 +62,10 @@ public class PersistenceConfig {
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/bets");
-        dataSource.setUsername("bets");
-        dataSource.setPassword("bets");
+        dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
+        dataSource.setUrl(env.getProperty("jdbc.url"));
+        dataSource.setUsername(env.getProperty("jdbc.user"));
+        dataSource.setPassword(env.getProperty("jdbc.pass"));
 
         return dataSource;
     }
