@@ -1,9 +1,7 @@
-package eu.grigoriev.persistence.service;
+package eu.grigoriev.persistence.generic;
 
 import eu.grigoriev.persistence.exception.EntityAlreadyExistsException;
 import eu.grigoriev.persistence.exception.NoSuchEntityException;
-import eu.grigoriev.persistence.generic.GenericEntity;
-import eu.grigoriev.persistence.generic.GenericRepository;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

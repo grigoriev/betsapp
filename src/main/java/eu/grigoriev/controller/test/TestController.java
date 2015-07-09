@@ -2,8 +2,8 @@ package eu.grigoriev.controller.test;
 
 import eu.grigoriev.persistence.entity.SecurityRoleEntity;
 import eu.grigoriev.persistence.entity.UserEntity;
-import eu.grigoriev.persistence.service.SecurityRoleRepository;
-import eu.grigoriev.persistence.service.UserRepository;
+import eu.grigoriev.persistence.service.SecurityRolesRepository;
+import eu.grigoriev.persistence.service.UsersRepository;
 import eu.grigoriev.utils.mapping.Mapping;
 import eu.grigoriev.utils.security.Roles;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -20,28 +20,28 @@ import java.util.List;
 public class TestController {
 
     @Autowired
-    UserRepository userRepository;
+    UsersRepository usersRepository;
 
     @Autowired
-    SecurityRoleRepository securityRoleRepository;
+    SecurityRolesRepository securityRolesRepository;
 
     @RequestMapping(value = Mapping.TEST.ADD_TEST_USER, method = {RequestMethod.GET, RequestMethod.HEAD})
     @ResponseBody
     public UserEntity clearAllAndAddTestUser() {
-        List<UserEntity> userEntities = userRepository.findAll();
+        List<UserEntity> userEntities = usersRepository.findAll();
         for (UserEntity userEntity : userEntities) {
-            userRepository.delete(userEntity.getId());
+            usersRepository.delete(userEntity.getId());
         }
 
-        List<SecurityRoleEntity> securityRolesEntities = securityRoleRepository.findAll();
+        List<SecurityRoleEntity> securityRolesEntities = securityRolesRepository.findAll();
         for (SecurityRoleEntity securityRoleEntity : securityRolesEntities) {
-            securityRoleRepository.delete(securityRoleEntity.getId());
+            securityRolesRepository.delete(securityRoleEntity.getId());
         }
 
         SecurityRoleEntity securityRoleEntity = new SecurityRoleEntity();
         securityRoleEntity.setRole(Roles.USER);
 
-        securityRoleRepository.save(securityRoleEntity);
+        securityRolesRepository.save(securityRoleEntity);
 
         UserEntity userEntity = new UserEntity();
         userEntity.setUsername("username");
@@ -52,7 +52,7 @@ public class TestController {
         userEntity.setDisplay("User Name");
         userEntity.setSecurityRoleEntity(securityRoleEntity);
 
-        userRepository.create(userEntity);
+        usersRepository.create(userEntity);
 
         return userEntity;
     }

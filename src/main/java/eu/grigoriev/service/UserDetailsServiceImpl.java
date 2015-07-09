@@ -1,7 +1,7 @@
 package eu.grigoriev.service;
 
 import eu.grigoriev.persistence.entity.UserEntity;
-import eu.grigoriev.persistence.service.UserRepository;
+import eu.grigoriev.persistence.service.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.GrantedAuthority;
@@ -20,11 +20,11 @@ import java.util.Collection;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    private UserRepository userRepository;
+    private UsersRepository usersRepository;
 
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException, DataAccessException {
-        UserEntity userEntity = userRepository.findByName(username);
+        UserEntity userEntity = usersRepository.findByName(username);
 
         if (userEntity == null) {
             throw new UsernameNotFoundException(username);
