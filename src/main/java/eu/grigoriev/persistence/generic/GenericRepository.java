@@ -10,8 +10,6 @@ public interface GenericRepository<Entity, PrimaryKey extends Serializable> {
 
     List<Entity> findAll();
 
-    Entity update(Entity transientObject);
-
     void delete(Entity entity);
 
     void delete(PrimaryKey primaryKey);

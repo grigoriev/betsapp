@@ -49,13 +49,6 @@ public abstract class AbstractRepository<Entity, PrimaryKey extends Serializable
         return sessionFactory.getCurrentSession().createQuery("from " + entityClass.getSimpleName()).list();
     }
 
-    @SuppressWarnings("unchecked")
-    @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public Entity update(Entity transientObject) {
-        return (Entity) sessionFactory.getCurrentSession().merge(transientObject);
-    }
-
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void delete(Entity entity) {
