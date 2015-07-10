@@ -1,4 +1,4 @@
-package eu.grigoriev;
+package eu.grigoriev.controller;
 
 import eu.grigoriev.utils.security.Roles;
 import org.junit.Before;
@@ -32,7 +32,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
         "file:src/main/webapp/WEB-INF/application-context.xml",
         "file:src/main/webapp/WEB-INF/spring-security.xml"
 })
-public class ControllerTest {
+public class ControllersTest {
 
     private MockMvc mockMvc;
 

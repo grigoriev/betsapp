@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "security_role")
+@Table(name = "security_roles")
 public class SecurityRoleEntity implements Serializable {
 
     @Id
@@ -14,6 +14,13 @@ public class SecurityRoleEntity implements Serializable {
 
     @Column(name = "role")
     private String role;
+
+    public SecurityRoleEntity() {
+    }
+
+    public SecurityRoleEntity(String role) {
+        this.role = role;
+    }
 
     public Integer getId() {
         return id;

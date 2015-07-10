@@ -35,6 +35,13 @@ public abstract class AbstractRepository<Entity, PrimaryKey extends Serializable
         return (PrimaryKey) sessionFactory.getCurrentSession().save(entity);
     }
 
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+    public boolean exists(PrimaryKey primaryKey) {
+        Entity entity = findById(primaryKey);
+        return (entity != null);
+    }
+
     @SuppressWarnings("unchecked")
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
@@ -51,20 +58,28 @@ public abstract class AbstractRepository<Entity, PrimaryKey extends Serializable
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void delete(Entity entity) {
-        sessionFactory.getCurrentSession().delete(entity);
-    }
-
-    @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void delete(PrimaryKey primaryKey) {
         Entity entity = findById(primaryKey);
         delete(entity);
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void deleteAll() {
+        List<Entity> entities = findAll();
+        for (Entity entity : entities) {
+            delete(entity);
+        }
+    }
+
+    @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public long count() {
         return (long) sessionFactory.getCurrentSession().createQuery("select count(*) from " + entityClass.getSimpleName()).uniqueResult();
+    }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    private void delete(Entity entity) {
+        sessionFactory.getCurrentSession().delete(entity);
     }
 }

@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 @NamedQueries({
         @NamedQuery(
                 name = "findByName",
@@ -39,6 +39,19 @@ public class UserEntity implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="security_role_id")
     private SecurityRoleEntity securityRoleEntity;
+
+    public UserEntity() {
+    }
+
+    public UserEntity(String username, String password, String display, boolean enabled, boolean expired, boolean locked, SecurityRoleEntity securityRoleEntity) {
+        this.username = username;
+        this.password = password;
+        this.display = display;
+        this.enabled = enabled;
+        this.expired = expired;
+        this.locked = locked;
+        this.securityRoleEntity = securityRoleEntity;
+    }
 
     public Integer getId() {
         return id;

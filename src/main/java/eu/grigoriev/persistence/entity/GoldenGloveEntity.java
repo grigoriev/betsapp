@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "golden_glove")
+@Table(name = "golden_gloves")
 public class GoldenGloveEntity implements Serializable {
 
     @Id

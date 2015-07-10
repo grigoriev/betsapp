@@ -23,7 +23,7 @@ public class PersistenceConfig {
     @Autowired
     private Environment env;
 
-    Properties hibernateProperties() {
+    public Properties hibernateProperties() {
         return new Properties() {
             {
                 setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));

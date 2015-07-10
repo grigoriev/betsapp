@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "match")
+@Table(name = "matches")
 public class MatchEntity implements Serializable {
 
     @Id
