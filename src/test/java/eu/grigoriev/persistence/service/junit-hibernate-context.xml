@@ -10,7 +10,7 @@
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"
           p:driverClassName="org.hsqldb.jdbcDriver"
-          p:url="jdbc:hsqldb:file:bets"
+          p:url="jdbc:hsqldb:mem:bets"
           p:username="sa"
           p:password=""/>
 
