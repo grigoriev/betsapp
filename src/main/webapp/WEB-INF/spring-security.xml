@@ -20,7 +20,7 @@
         <security:logout
                 invalidate-session="true"
                 delete-cookies="true"
-                logout-success-url="/"
+                logout-success-url="/auth/login?logout=true"
                 logout-url="/auth/logout"/>
 
     </security:http>

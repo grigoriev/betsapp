@@ -8,26 +8,13 @@
 <script src="<c:url value="/resources/js/common.js"/>" type="text/javascript"></script>
 
 <script type="text/javascript">
-    function appURL(path) {
-        return <c:url value="/"/> +path;
-    }
-
-    function navigateToIndex() {
-        location.href = '<c:url value="/"/>';
-    }
-
     function authLogout() {
-        $.get(
-                '<c:url value="/auth/logout"/>',
-                function (data) {
-                    navigateToIndex();
-                }
-        );
+        location.href = '<c:url value="/auth/logout?logout=true"/>';
     }
 </script>
 
 <div class="header">
     <div id="div-logout">
-        <button id="button-logout" tabindex="-1" onclick="authLogout()">Logout</button>
+        <button id="button-logout" tabindex="-1" onclick="authLogout();">Logout</button>
     </div>
 </div>

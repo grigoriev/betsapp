@@ -27,6 +27,11 @@
         <div class="error">${error}</div>
     </c:if>
 
+    <%--@elvariable id="logout" type="java.lang.String"--%>
+    <c:if test="${not empty logout}">
+        <div class="logout">${logout}</div>
+    </c:if>
+
     <form id='loginForm' action='<c:url value='/j_spring_security_check'/>' method='post'>
 
         <div id="div-login">
