@@ -31,9 +31,9 @@ public class AuthController {
         }
 
         if (logout) {
-            modelMap.put("logout", "Successfully logged out!");
+            modelMap.put("message", "Successfully logged out!");
         } else {
-            modelMap.put("logout", "");
+            modelMap.put("message", "");
         }
 
         return "auth/login";

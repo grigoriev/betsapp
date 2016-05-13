@@ -2,73 +2,64 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<script src="<c:url value='/resources/js/jquery/jquery.min.js'/>" type="text/javascript"></script>
-<script src="<c:url value='/resources/js/common.js'/>" type="text/javascript"></script>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>AuthLogin</title>
+    <title>Bets App</title>
+
+    <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap/bootstrap.min.css"/>">
+    <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap/bootstrap-theme.min.css"/>">
+    <link rel="stylesheet" href="<c:url value="/resources/css/auth/login.css"/>">
+    <script src="<c:url value='/resources/js/jquery/jquery.min.js'/>" type="text/javascript"></script>
+    <script src="<c:url value="/resources/js/bootstrap/bootstrap.min.js"/>" type="text/javascript"></script>
 </head>
 <body>
 
-<script>
+<script type="text/javascript">
     $(function () {
-        $("#username").focus();
+        $("#alert-error").fadeTo(2000, 500).slideUp(500, function () {
+            $("#alert-error").alert('close');
+        });
+        $("#alert-message").fadeTo(2000, 500).slideUp(500, function () {
+            $("#alert-message").alert('close');
+        });
     });
 </script>
 
-<div id="login-box">
+<div id="container">
 
-    <%--@elvariable id="error" type="java.lang.String"--%>
-    <c:if test="${not empty error}">
-        <div class="error">${error}</div>
-    </c:if>
+    <form class="form-signin" id='loginForm' action='<c:url value='/j_spring_security_check'/>' method='post'>
+        <%--@elvariable id="error" type="java.lang.String"--%>
+        <c:if test="${not empty error}">
+            <div id="alert-error" class="alert alert-danger">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                    ${error}
+            </div>
+        </c:if>
 
-    <%--@elvariable id="logout" type="java.lang.String"--%>
-    <c:if test="${not empty logout}">
-        <div class="logout">${logout}</div>
-    </c:if>
+        <%--@elvariable id="message" type="java.lang.String"--%>
+        <c:if test="${not empty message}">
+            <div id="alert-message" class="alert alert-success">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                    ${message}
+            </div>
+        </c:if>
 
-    <form id='loginForm' action='<c:url value='/j_spring_security_check'/>' method='post'>
-
-        <div id="div-login">
-            <table id="table-login">
-                <colgroup>
-                    <col width="35%">
-                    <col width="65%">
-                </colgroup>
-
-                <tr>
-                    <td>
-                        <label for="username">Username</label>
-                    </td>
-                    <td>
-                        <input id="username" type="text" name="j_username">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="password">Password</label>
-                    </td>
-                    <td>
-                        <input id="password" type="password" name="j_password"/>
-                    </td>
-                </tr>
-            </table>
-
-            <table id="table-buttons">
-                <tr>
-                    <td align="right">
-                        <button id="submit-button" type="submit">Login</button>
-                    </td>
-                </tr>
-            </table>
-
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        </div>
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="inputUsername" class="sr-only">Username</label>
+        <input type="text" id="inputUsername" name="j_username" class="form-control" placeholder="Username" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" name="j_password" class="form-control" placeholder="Password" required>
+        <!--div class="checkbox">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div-->
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     </form>
 </div>
 
