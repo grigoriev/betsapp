@@ -1,5 +1,6 @@
 package eu.grigoriev.controller.auth;
 
+import eu.grigoriev.controller.AbstractController;
 import eu.grigoriev.utils.mapping.Mapping;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping(Mapping.AUTH.ROOT)
-public class AuthController {
+public class AuthController extends AbstractController {
 
     @RequestMapping(value = Mapping.AUTH.LOGIN, method = {RequestMethod.GET, RequestMethod.HEAD})
     public String login(

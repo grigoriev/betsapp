@@ -29,12 +29,27 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"></a>
+                <a class="navbar-brand" href="#">Lazybets</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav navbar-left">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">WC 2014<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Group Stage</a></li>
+                            <li><a href="#">1/8</a></li>
+                            <li><a href="#">1/4</a></li>
+                            <li><a href="#">1/2</a></li>
+                            <li><a href="#">Final</a></li>
+                            <li><a href="#">Others</a></li>
+                            <li><a href="#">Scores</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Help</a></li>
+                            <li><a href="#">Participants</a></li>
+                        </ul>
+                    </li>
                     <li class="dropdown active">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Euro2016<span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Euro 2016<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Group Stage</a></li>
                             <li><a href="#">1/8</a></li>
@@ -51,12 +66,8 @@
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#" onclick="authLogout()">Logout</a></li>
-                </ul>
-
-                <%--@elvariable id="admin" type="java.lang.Boolean"--%>
-                <c:if test="${admin}">
-                    <ul class="nav navbar-nav navbar-right">
+                    <%--@elvariable id="admin" type="java.lang.Boolean"--%>
+                    <c:if test="${admin}">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
                             <ul class="dropdown-menu">
@@ -65,8 +76,10 @@
                                 <li role="separator" class="divider"></li>
                             </ul>
                         </li>
-                    </ul>
-                </c:if>
+                    </c:if>
+                    <li><a href="#" onclick="authLogout()">Logout</a></li>
+                </ul>
+
             </div>
         </div>
     </nav>
