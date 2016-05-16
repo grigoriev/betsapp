@@ -12,7 +12,7 @@ import java.util.Collection;
 public abstract class SecurityRules {
     public static final String ALLOWED_FOR_USER_ROLE = "hasRole('" + Roles.USER + "')";
     public static final String ALLOWED_FOR_ADMIN_ROLE = "hasRole('" + Roles.ADMIN + "')";
-    public static final String ALLOWED_FOR_USER_AND_ADMIN_ROLES = "hasAnyRole('" + Roles.ADMIN + "';'" + Roles.USER + "')";
+    public static final String ALLOWED_FOR_USER_OR_ADMIN_ROLES = "hasRole('" + Roles.ADMIN + "') OR hasRole('" + Roles.USER + "')";
     public static final String ALLOWED_FOR_LOGGED_IN = "isAuthenticated()";
 
 
