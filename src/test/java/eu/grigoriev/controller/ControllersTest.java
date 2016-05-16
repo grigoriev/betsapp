@@ -64,11 +64,11 @@ public class ControllersTest {
     }
 
     @Test
-    public void testIndexDashboard() throws Exception {
+    public void testIndexIndex() throws Exception {
         login();
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("index/dashboard"));
+                .andExpect(view().name("index/index"));
         logout();
     }
 
@@ -76,7 +76,7 @@ public class ControllersTest {
     public void testInvalidRole() throws Exception {
         invalidRole();
         try {
-            mockMvc.perform(get("/"));
+            mockMvc.perform(get("/admin"));
         } catch (Throwable e) {
             assertTrue(e.getCause() instanceof AccessDeniedException);
         }

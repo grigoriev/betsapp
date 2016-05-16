@@ -27,7 +27,7 @@ public class TestController {
 
     @RequestMapping(value = Mapping.TEST.ADD_TEST_USER, method = {RequestMethod.GET, RequestMethod.HEAD})
     @ResponseBody
-    public UserEntity clearAllAndAddTestUser() {
+    public UserEntity[] clearAllAndAddTestUser() {
         List<UserEntity> userEntities = usersRepository.findAll();
         for (UserEntity userEntity : userEntities) {
             usersRepository.delete(userEntity.getId());
@@ -38,22 +38,35 @@ public class TestController {
             securityRolesRepository.delete(securityRoleEntity.getId());
         }
 
-        SecurityRoleEntity securityRoleEntity = new SecurityRoleEntity();
-        securityRoleEntity.setRole(Roles.USER);
+        SecurityRoleEntity securityRoleAdminEntity = new SecurityRoleEntity();
+        securityRoleAdminEntity.setRole(Roles.ADMIN);
+        SecurityRoleEntity securityRoleUserEntity = new SecurityRoleEntity();
+        securityRoleUserEntity.setRole(Roles.USER);
 
-        securityRolesRepository.save(securityRoleEntity);
+        securityRolesRepository.save(securityRoleAdminEntity);
+        securityRolesRepository.save(securityRoleUserEntity);
 
-        UserEntity userEntity = new UserEntity();
-        userEntity.setUsername("username");
-        userEntity.setPassword(DigestUtils.md5Hex("password"));
-        userEntity.setEnabled(true);
-        userEntity.setExpired(false);
-        userEntity.setLocked(false);
-        userEntity.setDisplay("User Name");
-        userEntity.setSecurityRoleEntity(securityRoleEntity);
+        UserEntity userAdminEntity = new UserEntity();
+        userAdminEntity.setUsername("admin");
+        userAdminEntity.setPassword(DigestUtils.md5Hex("admin"));
+        userAdminEntity.setEnabled(true);
+        userAdminEntity.setExpired(false);
+        userAdminEntity.setLocked(false);
+        userAdminEntity.setDisplay("Admin Name");
+        userAdminEntity.setSecurityRoleEntity(securityRoleAdminEntity);
 
-        usersRepository.save(userEntity);
+        UserEntity userUserEntity = new UserEntity();
+        userUserEntity.setUsername("username");
+        userUserEntity.setPassword(DigestUtils.md5Hex("password"));
+        userUserEntity.setEnabled(true);
+        userUserEntity.setExpired(false);
+        userUserEntity.setLocked(false);
+        userUserEntity.setDisplay("User Name");
+        userUserEntity.setSecurityRoleEntity(securityRoleUserEntity);
 
-        return userEntity;
+        usersRepository.save(userAdminEntity);
+        usersRepository.save(userUserEntity);
+
+        return new UserEntity[]{userAdminEntity, userUserEntity};
     }
 }

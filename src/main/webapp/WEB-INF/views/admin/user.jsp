@@ -3,16 +3,16 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <tiles:insertDefinition name="template">
-    <tiles:putAttribute name="title" value="Dashboard"/>
-    <tiles:putAttribute name="body">
+  <tiles:putAttribute name="title" value="User"/>
+  <tiles:putAttribute name="body">
 
-        <div class="body">
+    <div class="body">
 
-            <div>
+      <div>
 
-            </div>
+      </div>
 
-        </div>
+    </div>
 
-    </tiles:putAttribute>
+  </tiles:putAttribute>
 </tiles:insertDefinition>

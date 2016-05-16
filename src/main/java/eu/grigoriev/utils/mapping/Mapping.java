@@ -20,4 +20,10 @@ public class Mapping {
         public static final String ROOT = "/test";
         public static final String ADD_TEST_USER = "/add/test/user";
     }
+
+    public static class ADMIN {
+        public static final String ROOT = "/admin";
+        public static final String USER_ADD = "/user/add";
+        public static final String USER_EDIT = "/user/edit";
+    }
 }

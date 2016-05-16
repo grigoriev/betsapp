@@ -49,9 +49,24 @@
                         </ul>
                     </li>
                 </ul>
+
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#" onclick="authLogout()">Logout</a></li>
                 </ul>
+
+                <%--@elvariable id="admin" type="java.lang.Boolean"--%>
+                <c:if test="${admin}">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Add User</a></li>
+                                <li><a href="#">Edit User</a></li>
+                                <li role="separator" class="divider"></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </c:if>
             </div>
         </div>
     </nav>
