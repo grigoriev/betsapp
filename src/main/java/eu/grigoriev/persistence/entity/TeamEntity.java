@@ -11,4 +11,14 @@ public class TeamEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
+
+    @Column(name = "name", unique = true)
+    private String name;
+
+    @Column(name = "logo")
+    private String logo;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="team_type_id")
+    private TeamTypeEntity teamTypeEntity;
 }
