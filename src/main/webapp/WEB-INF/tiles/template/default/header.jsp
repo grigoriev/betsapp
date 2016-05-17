@@ -3,6 +3,7 @@
 
 <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap/bootstrap.min.css"/>">
 <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap/bootstrap-theme.min.css"/>">
+<link rel="stylesheet" href="<c:url value="/resources/css/index.css"/>">
 <script src="<c:url value="/resources/js/jquery/jquery.min.js"/>" type="text/javascript"></script>
 <script src="<c:url value="/resources/js/bootstrap/bootstrap.min.js"/>"></script>
 <script src="<c:url value="/resources/js/bootstrap/holder.min.js"/>"></script>
@@ -20,7 +21,7 @@
 
 <div class="header">
 
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -29,7 +30,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Lazybets</a>
+                <!--a class="navbar-brand" href="#">Lazybets</a-->
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-left">
@@ -48,7 +49,7 @@
                             <li><a href="#">Participants</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown active">
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Euro 2016<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Group Stage</a></li>
