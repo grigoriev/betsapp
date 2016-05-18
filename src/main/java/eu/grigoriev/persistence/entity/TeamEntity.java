@@ -21,4 +21,45 @@ public class TeamEntity implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="team_type_id")
     private TeamTypeEntity teamTypeEntity;
+
+    public TeamEntity() {
+    }
+
+    public TeamEntity(String name, String logo, TeamTypeEntity teamTypeEntity) {
+        this.name = name;
+        this.logo = logo;
+        this.teamTypeEntity = teamTypeEntity;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+
+    public TeamTypeEntity getTeamTypeEntity() {
+        return teamTypeEntity;
+    }
+
+    public void setTeamTypeEntity(TeamTypeEntity teamTypeEntity) {
+        this.teamTypeEntity = teamTypeEntity;
+    }
 }
