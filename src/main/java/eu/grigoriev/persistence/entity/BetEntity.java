@@ -1,5 +1,7 @@
 package eu.grigoriev.persistence.entity;
 
+import eu.grigoriev.constants.Matches;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -11,4 +13,14 @@ public class BetEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
+
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="match_id")
+    private MatchEntity matchEntity;
+
+    @Column(name = "host_scores")
+    private Integer hostScores;
+
+    @Column(name = "guest_scores")
+    private Integer guestScores;
 }
