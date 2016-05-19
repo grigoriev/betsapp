@@ -4,6 +4,7 @@ import eu.grigoriev.constants.Cups;
 import eu.grigoriev.constants.Matches;
 import eu.grigoriev.constants.Teams;
 import eu.grigoriev.controller.AbstractController;
+import eu.grigoriev.model.response.general.Response;
 import eu.grigoriev.model.response.general.SuccessResponse;
 import eu.grigoriev.persistence.entity.CupEntity;
 import eu.grigoriev.persistence.entity.MatchTypeEntity;
@@ -47,7 +48,7 @@ public class DataLoaderController extends AbstractController {
     }
 
     @RequestMapping(value = Mapping.DATA_LOADER.ALL, method = {RequestMethod.GET, RequestMethod.HEAD})
-    public SuccessResponse all() {
+    public Response all() {
         clear();
         types();
         teamsNational();
