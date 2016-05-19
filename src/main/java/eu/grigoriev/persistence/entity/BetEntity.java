@@ -4,6 +4,7 @@ import eu.grigoriev.constants.Matches;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "bets")
@@ -23,4 +24,7 @@ public class BetEntity implements Serializable {
 
     @Column(name = "guest_scores")
     private Integer guestScores;
+
+    @ManyToMany(mappedBy="betEntities")
+    private List<UserEntity> userEntities;
 }

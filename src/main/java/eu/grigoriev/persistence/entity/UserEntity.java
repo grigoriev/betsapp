@@ -2,6 +2,7 @@ package eu.grigoriev.persistence.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -37,8 +38,19 @@ public class UserEntity implements Serializable {
     private boolean locked;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="security_role_id")
+    @JoinColumn(name = "security_role_id")
     private SecurityRoleEntity securityRoleEntity;
+
+    @ManyToMany(mappedBy = "userEntities")
+    private List<CupEntity> cupEntities;
+
+    @ManyToMany
+    @JoinTable(
+            name = "bets_users",
+            joinColumns = @JoinColumn(name = "bet_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id")
+    )
+    private List<BetEntity> betEntities;
 
     public UserEntity() {
     }
@@ -117,34 +129,4 @@ public class UserEntity implements Serializable {
         this.securityRoleEntity = securityRoleEntity;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof UserEntity)) return false;
-
-        UserEntity that = (UserEntity) o;
-
-        if (enabled != that.enabled) return false;
-        if (expired != that.expired) return false;
-        if (locked != that.locked) return false;
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (username != null ? !username.equals(that.username) : that.username != null) return false;
-        if (password != null ? !password.equals(that.password) : that.password != null) return false;
-        if (display != null ? !display.equals(that.display) : that.display != null) return false;
-        return !(securityRoleEntity != null ? !securityRoleEntity.equals(that.securityRoleEntity) : that.securityRoleEntity != null);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (username != null ? username.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (display != null ? display.hashCode() : 0);
-        result = 31 * result + (enabled ? 1 : 0);
-        result = 31 * result + (expired ? 1 : 0);
-        result = 31 * result + (locked ? 1 : 0);
-        result = 31 * result + (securityRoleEntity != null ? securityRoleEntity.hashCode() : 0);
-        return result;
-    }
 }

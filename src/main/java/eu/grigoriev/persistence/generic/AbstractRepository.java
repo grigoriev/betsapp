@@ -1,10 +1,12 @@
 package eu.grigoriev.persistence.generic;
 
+import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -32,7 +34,19 @@ public abstract class AbstractRepository<Entity, PrimaryKey extends Serializable
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public PrimaryKey save(Entity entity) {
-        return (PrimaryKey) sessionFactory.getCurrentSession().save(entity);
+        PrimaryKey primaryKey = (PrimaryKey) sessionFactory.getCurrentSession().save(entity);
+        sessionFactory.getCurrentSession().flush();
+        return primaryKey;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public Entity update(Entity entity) {
+        entity = (Entity) sessionFactory.getCurrentSession().merge(entity);
+        sessionFactory.getCurrentSession().update(entity);
+        sessionFactory.getCurrentSession().flush();
+        return entity;
     }
 
     @Override
@@ -73,6 +87,13 @@ public abstract class AbstractRepository<Entity, PrimaryKey extends Serializable
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void resetAutoincrement() {
+        SQLQuery sqlQuery = sessionFactory.getCurrentSession().createSQLQuery("ALTER TABLE " + entityClass.getAnnotation(Table.class).name() + " AUTO_INCREMENT = 1");
+        sqlQuery.executeUpdate();
+    }
+
+    @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public long count() {
         return (long) sessionFactory.getCurrentSession().createQuery("select count(*) from " + entityClass.getSimpleName()).uniqueResult();
@@ -81,5 +102,6 @@ public abstract class AbstractRepository<Entity, PrimaryKey extends Serializable
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     private void delete(Entity entity) {
         sessionFactory.getCurrentSession().delete(entity);
+        sessionFactory.getCurrentSession().flush();
     }
 }

@@ -2,6 +2,8 @@ package eu.grigoriev.persistence.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "teams")
@@ -21,6 +23,9 @@ public class TeamEntity implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="team_type_id")
     private TeamTypeEntity teamTypeEntity;
+
+    @ManyToMany(mappedBy = "teamEntities")
+    private List<CupEntity> cupEntities;
 
     public TeamEntity() {
     }
@@ -61,5 +66,20 @@ public class TeamEntity implements Serializable {
 
     public void setTeamTypeEntity(TeamTypeEntity teamTypeEntity) {
         this.teamTypeEntity = teamTypeEntity;
+    }
+
+    public List<CupEntity> getCupEntities() {
+        return cupEntities;
+    }
+
+    public void setCupEntities(List<CupEntity> cupEntities) {
+        this.cupEntities = cupEntities;
+    }
+
+    public void addCup(CupEntity cupEntity) {
+        if (cupEntities == null) {
+            cupEntities = new ArrayList<>();
+        }
+        cupEntities.add(cupEntity);
     }
 }
