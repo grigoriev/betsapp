@@ -4,7 +4,7 @@ import eu.grigoriev.constants.Cups;
 import eu.grigoriev.constants.Matches;
 import eu.grigoriev.constants.Teams;
 import eu.grigoriev.controller.AbstractController;
-import eu.grigoriev.model.response.SuccessResponse;
+import eu.grigoriev.model.response.general.SuccessResponse;
 import eu.grigoriev.persistence.entity.CupEntity;
 import eu.grigoriev.persistence.entity.MatchTypeEntity;
 import eu.grigoriev.persistence.entity.TeamEntity;

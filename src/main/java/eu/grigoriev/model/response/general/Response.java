@@ -1,9 +1,9 @@
-package eu.grigoriev.model.response;
+package eu.grigoriev.model.response.general;
 
-public class AjaxResponse {
+public abstract class Response {
     private String status;
 
-    public AjaxResponse(String status) {
+    protected Response(String status) {
         this.status = status;
     }
 
