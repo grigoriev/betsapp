@@ -41,7 +41,12 @@ public class UserEntity implements Serializable {
     @JoinColumn(name = "security_role_id")
     private SecurityRoleEntity securityRoleEntity;
 
-    @ManyToMany(mappedBy = "userEntities")
+    @ManyToMany
+    @JoinTable(
+            name = "cups_users",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "cup_id", referencedColumnName = "id")
+    )
     private List<CupEntity> cupEntities;
 
     @ManyToMany
@@ -109,16 +114,16 @@ public class UserEntity implements Serializable {
         return expired;
     }
 
-    public void setExpired(boolean accountNonExpired) {
-        this.expired = accountNonExpired;
+    public void setExpired(boolean expired) {
+        this.expired = expired;
     }
 
     public boolean isLocked() {
         return locked;
     }
 
-    public void setLocked(boolean accountNonLocked) {
-        this.locked = accountNonLocked;
+    public void setLocked(boolean locked) {
+        this.locked = locked;
     }
 
     public SecurityRoleEntity getSecurityRoleEntity() {
@@ -129,4 +134,19 @@ public class UserEntity implements Serializable {
         this.securityRoleEntity = securityRoleEntity;
     }
 
+    public List<CupEntity> getCupEntities() {
+        return cupEntities;
+    }
+
+    public void setCupEntities(List<CupEntity> cupEntities) {
+        this.cupEntities = cupEntities;
+    }
+
+    public List<BetEntity> getBetEntities() {
+        return betEntities;
+    }
+
+    public void setBetEntities(List<BetEntity> betEntities) {
+        this.betEntities = betEntities;
+    }
 }

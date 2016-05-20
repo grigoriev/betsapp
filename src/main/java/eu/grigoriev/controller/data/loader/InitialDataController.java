@@ -45,6 +45,9 @@ public class InitialDataController extends AbstractController {
     @Autowired
     GroupsRepository groupsRepository;
 
+    @Autowired
+    UsersRepository usersRepository;
+
     private CupEntity cupWc2014;
     private CupEntity cupEuro2016;
     private TeamTypeEntity teamTypeNational;
@@ -63,6 +66,7 @@ public class InitialDataController extends AbstractController {
         clear();
         types();
         cups();
+        cupsForUsers();
         teamsNational();
         teamsClub();
         matchesWc2014();
@@ -127,6 +131,21 @@ public class InitialDataController extends AbstractController {
         cupMenuItemsRepository.save(new CupMenuItemEntity(Cups.EURO2016.MENU_ITEMS.PARTICIPANTS.NAME, Cups.EURO2016.URL + Cups.EURO2016.MENU_ITEMS.PARTICIPANTS.URL, cupEuro2016));
     }
 
+    private void cupsForUsers() {
+        UserEntity grigoriev = usersRepository.findByName("grigoriev");
+        List<CupEntity> grigorievCups = new ArrayList<>();
+        grigorievCups.add(cupWc2014);
+        grigorievCups.add(cupEuro2016);
+        grigoriev.setCupEntities(grigorievCups);
+        usersRepository.update(grigoriev);
+
+        UserEntity sg = usersRepository.findByName("sg");
+        List<CupEntity> sgCups = new ArrayList<>();
+        sgCups.add(cupWc2014);
+        sg.setCupEntities(sgCups);
+        usersRepository.update(sg);
+    }
+
     public void types() {
         teamTypeNational = teamTypesRepository.findById(teamTypesRepository.save(new TeamTypeEntity(Teams.Types.NATIONAL)));
         teamTypeClub = teamTypesRepository.findById(teamTypesRepository.save(new TeamTypeEntity(Teams.Types.CLUB)));
@@ -183,7 +202,6 @@ public class InitialDataController extends AbstractController {
         TeamEntity uruguay = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.URUGUAY, "", teamTypeNational)));
         TeamEntity usa = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.USA, "", teamTypeNational)));
         TeamEntity wales = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.WALES, "", teamTypeNational)));
-
 
         List<TeamEntity> teamsWc2014 = new ArrayList<>();
         teamsWc2014.add(algeria);
