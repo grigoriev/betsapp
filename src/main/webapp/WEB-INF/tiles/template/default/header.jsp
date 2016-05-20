@@ -23,36 +23,23 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-left">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">WC 2014<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Group Stage</a></li>
-                            <li><a href="#">1/8</a></li>
-                            <li><a href="#">1/4</a></li>
-                            <li><a href="#">1/2</a></li>
-                            <li><a href="#">Final</a></li>
-                            <li><a href="#">Others</a></li>
-                            <li><a href="#">Scores</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Help</a></li>
-                            <li><a href="#">Participants</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Euro 2016<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Group Stage</a></li>
-                            <li><a href="#">1/8</a></li>
-                            <li><a href="#">1/4</a></li>
-                            <li><a href="#">1/2</a></li>
-                            <li><a href="#">Final</a></li>
-                            <li><a href="#">Others</a></li>
-                            <li><a href="#">Scores</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Help</a></li>
-                            <li><a href="#">Participants</a></li>
-                        </ul>
-                    </li>
+                    <c:forEach var="cup" items="${cups}">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><c:out value="${cup.displayName}"/><span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <c:forEach var="cupMenuItem" items="${cup.cupMenuItemEntities}">
+                                    <c:choose>
+                                        <c:when test="${cupMenuItem.menuItem == '---separator---'}">
+                                            <li role="separator" class="divider"></li>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <li><a href="<c:out value="${cupMenuItem.url}"/>"><c:out value="${cupMenuItem.menuItem}"/></a></li>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
+                            </ul>
+                        </li>
+                    </c:forEach>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">

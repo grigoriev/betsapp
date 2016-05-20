@@ -16,6 +16,12 @@ public class CupEntity implements Serializable {
     @Column(name = "name", unique = true)
     private String name;
 
+    @Column(name = "display_name")
+    private String displayName;
+
+    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="cupEntity")
+    private List<CupMenuItemEntity> cupMenuItemEntities;
+
     @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="cupEntity")
     private List<MatchEntity> matchEntities;
 
@@ -57,8 +63,9 @@ public class CupEntity implements Serializable {
     public CupEntity() {
     }
 
-    public CupEntity(String name) {
+    public CupEntity(String name, String displayName) {
         this.name = name;
+        this.displayName = displayName;
     }
 
     public Integer getId() {
@@ -75,6 +82,22 @@ public class CupEntity implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public List<CupMenuItemEntity> getCupMenuItemEntities() {
+        return cupMenuItemEntities;
+    }
+
+    public void setCupMenuItemEntities(List<CupMenuItemEntity> menuItemEntities) {
+        this.cupMenuItemEntities = menuItemEntities;
     }
 
     public List<MatchEntity> getMatchEntities() {
