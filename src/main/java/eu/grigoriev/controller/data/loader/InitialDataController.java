@@ -15,6 +15,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,6 +63,7 @@ public class InitialDataController extends AbstractController {
     }
 
     @RequestMapping(value = Mapping.INITIAL_DATA.ALL, method = {RequestMethod.GET, RequestMethod.HEAD})
+    @ResponseBody
     public Response all() {
         clear();
         types();

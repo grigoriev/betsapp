@@ -44,7 +44,7 @@ public class CupEntity implements Serializable {
     @PrimaryKeyJoinColumn
     private GoldenGloveEntity goldenGloveEntity;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(
             name = "cups_users",
             joinColumns = @JoinColumn(name = "cup_id", referencedColumnName = "id"),
@@ -52,7 +52,7 @@ public class CupEntity implements Serializable {
     )
     private List<UserEntity> userEntities;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(
             name = "cups_teams",
             joinColumns = @JoinColumn(name = "cup_id", referencedColumnName = "id"),
