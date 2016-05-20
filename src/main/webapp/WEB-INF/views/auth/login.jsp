@@ -1,21 +1,17 @@
 <%--@elvariable id="_csrf" type="org.springframework.security.web.csrf.CsrfAuthenticationStrategy.SaveOnAccessCsrfToken"--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Bets App</title>
+    <tiles:putAttribute name="title" value="Lazybets: Login"/>
 
-    <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap/bootstrap.min.css"/>">
-    <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap/bootstrap-theme.min.css"/>">
+    <%@include file="../../tiles/template/include/html_head.jsp" %>
     <link rel="stylesheet" href="<c:url value="/resources/css/auth/login.css"/>">
-    <script src="<c:url value='/resources/js/jquery/jquery.min.js'/>" type="text/javascript"></script>
-    <script src="<c:url value="/resources/js/bootstrap/bootstrap.min.js"/>" type="text/javascript"></script>
 </head>
 <body>
 

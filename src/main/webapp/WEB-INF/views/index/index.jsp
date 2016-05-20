@@ -3,7 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <tiles:insertDefinition name="template">
-    <tiles:putAttribute name="title" value="Index"/>
+    <tiles:putAttribute name="title" value="Lazybets: Dashboard"/>
     <tiles:putAttribute name="body">
 
         <div class="body">
