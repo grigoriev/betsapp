@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="icon" type="image/x-icon" href="/resources/img/favicon/favicon.ico">
     <title>
         <tiles:getAsString name="title"/>
     </title>

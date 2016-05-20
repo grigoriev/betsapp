@@ -23,9 +23,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping(Mapping.DATA_LOADER.ROOT)
+@RequestMapping(Mapping.INITIAL_DATA.ROOT)
 @PreAuthorize(SecurityRules.ALLOWED_FOR_ADMIN_ROLE)
-public class DataLoaderController extends AbstractController {
+public class InitialDataController extends AbstractController {
 
     @Autowired
     CupsRepository cupsRepository;
@@ -58,7 +58,7 @@ public class DataLoaderController extends AbstractController {
         return "data/loader";
     }
 
-    @RequestMapping(value = Mapping.DATA_LOADER.ALL, method = {RequestMethod.GET, RequestMethod.HEAD})
+    @RequestMapping(value = Mapping.INITIAL_DATA.ALL, method = {RequestMethod.GET, RequestMethod.HEAD})
     public Response all() {
         clear();
         types();
@@ -74,6 +74,14 @@ public class DataLoaderController extends AbstractController {
     }
 
     public void clear() {
+        List<CupEntity> cupEntities = cupsRepository.findAll();
+        for (CupEntity cupEntity : cupEntities) {
+            List<TeamEntity> teamEntities = cupEntity.getTeamEntities();
+            if (teamEntities != null) {
+                teamEntities.clear();
+            }
+            cupsRepository.update(cupEntity);
+        }
         cupsRepository.deleteAll();
         matchesRepository.deleteAll();
         groupsRepository.deleteAll();

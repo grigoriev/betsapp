@@ -1,4 +1,4 @@
-package eu.grigoriev.controller.test;
+package eu.grigoriev.controller.data.loader;
 
 import eu.grigoriev.persistence.entity.SecurityRoleEntity;
 import eu.grigoriev.persistence.entity.UserEntity;
@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 @Controller
-@RequestMapping(Mapping.TEST.ROOT)
-public class TestController {
+@RequestMapping(Mapping.INITIAL_DEPLOYMENT.ROOT)
+public class InitialDeploymentController {
 
     @Autowired
     UsersRepository usersRepository;
@@ -25,18 +25,20 @@ public class TestController {
     @Autowired
     SecurityRolesRepository securityRolesRepository;
 
-    @RequestMapping(value = Mapping.TEST.ADD_TEST_USER, method = {RequestMethod.GET, RequestMethod.HEAD})
+    @RequestMapping(value = Mapping.INITIAL_DEPLOYMENT.ADD_USERS, method = {RequestMethod.GET, RequestMethod.HEAD})
     @ResponseBody
-    public UserEntity[] clearAllAndAddTestUser() {
+    public UserEntity[] clearAllAndAddUsers() {
         List<UserEntity> userEntities = usersRepository.findAll();
         for (UserEntity userEntity : userEntities) {
             usersRepository.delete(userEntity.getId());
         }
+        usersRepository.resetAutoincrement();
 
         List<SecurityRoleEntity> securityRolesEntities = securityRolesRepository.findAll();
         for (SecurityRoleEntity securityRoleEntity : securityRolesEntities) {
             securityRolesRepository.delete(securityRoleEntity.getId());
         }
+        securityRolesRepository.resetAutoincrement();
 
         SecurityRoleEntity securityRoleAdminEntity = new SecurityRoleEntity();
         securityRoleAdminEntity.setRole(Roles.ADMIN);
@@ -47,21 +49,21 @@ public class TestController {
         securityRolesRepository.save(securityRoleUserEntity);
 
         UserEntity userAdminEntity = new UserEntity();
-        userAdminEntity.setUsername("admin");
-        userAdminEntity.setPassword(DigestUtils.md5Hex("admin"));
+        userAdminEntity.setUsername("grigoriev");
+        userAdminEntity.setPassword("72aaf68408b9a37aa0f1e5faef33ef7d");
         userAdminEntity.setEnabled(true);
         userAdminEntity.setExpired(false);
         userAdminEntity.setLocked(false);
-        userAdminEntity.setDisplay("Admin Name");
+        userAdminEntity.setDisplay("Sergey Grigoriev");
         userAdminEntity.setSecurityRoleEntity(securityRoleAdminEntity);
 
         UserEntity userUserEntity = new UserEntity();
-        userUserEntity.setUsername("username");
-        userUserEntity.setPassword(DigestUtils.md5Hex("password"));
+        userUserEntity.setUsername("sg");
+        userUserEntity.setPassword("72aaf68408b9a37aa0f1e5faef33ef7d");
         userUserEntity.setEnabled(true);
         userUserEntity.setExpired(false);
         userUserEntity.setLocked(false);
-        userUserEntity.setDisplay("User Name");
+        userUserEntity.setDisplay("Sergey Grigoriev");
         userUserEntity.setSecurityRoleEntity(securityRoleUserEntity);
 
         usersRepository.save(userAdminEntity);
