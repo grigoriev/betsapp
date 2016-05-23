@@ -23,10 +23,14 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-left">
+                    <%--@elvariable id="cups" type="java.util.List<eu.grigoriev.persistence.entity.CupEntity>"--%>
                     <c:forEach var="cup" items="${cups}">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><c:out value="${cup.displayName}"/><span class="caret"></span></a>
                             <ul class="dropdown-menu">
+                                <c:forEach var="cupStage" items="${cup.cupStageEntities}">
+                                    <li><a href="<c:out value="${cupStage.url}"/>"><c:out value="${cupStage.stage}"/></a></li>
+                                </c:forEach>
                                 <c:forEach var="cupMenuItem" items="${cup.cupMenuItemEntities}">
                                     <c:choose>
                                         <c:when test="${cupMenuItem.menuItem == '---separator---'}">

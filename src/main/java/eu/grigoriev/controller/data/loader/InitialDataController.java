@@ -29,6 +29,9 @@ public class InitialDataController extends AbstractController {
     CupsRepository cupsRepository;
 
     @Autowired
+    CupStagesRepository cupStagesRepository;
+
+    @Autowired
     CupMenuItemsRepository cupMenuItemsRepository;
 
     @Autowired
@@ -89,6 +92,7 @@ public class InitialDataController extends AbstractController {
             cupsRepository.update(cupEntity);
         }
         cupsRepository.deleteAll();
+        cupStagesRepository.deleteAll();
         cupMenuItemsRepository.deleteAll();
         matchesRepository.deleteAll();
         groupsRepository.deleteAll();
@@ -98,6 +102,7 @@ public class InitialDataController extends AbstractController {
 
         cupsRepository.resetAutoincrement();
         cupMenuItemsRepository.resetAutoincrement();
+        cupStagesRepository.resetAutoincrement();
         matchesRepository.resetAutoincrement();
         groupsRepository.resetAutoincrement();
         teamsRepository.resetAutoincrement();
@@ -109,22 +114,22 @@ public class InitialDataController extends AbstractController {
         cupWc2014 = cupsRepository.findById(cupsRepository.save(new CupEntity(Cups.WC2014.NAME, Cups.WC2014.DISPLAY_NAME)));
         cupEuro2016 = cupsRepository.findById(cupsRepository.save(new CupEntity(Cups.EURO2016.NAME, Cups.EURO2016.DISPLAY_NAME)));
 
-        cupMenuItemsRepository.save(new CupMenuItemEntity(Cups.WC2014.MENU_ITEMS.GROUPS_STAGE.NAME, Cups.WC2014.URL + Cups.WC2014.MENU_ITEMS.GROUPS_STAGE.URL, cupWc2014));
-        cupMenuItemsRepository.save(new CupMenuItemEntity(Cups.WC2014.MENU_ITEMS.ROUND_OF_16.NAME, Cups.WC2014.URL + Cups.WC2014.MENU_ITEMS.ROUND_OF_16.URL, cupWc2014));
-        cupMenuItemsRepository.save(new CupMenuItemEntity(Cups.WC2014.MENU_ITEMS.QUARTER_FINAL.NAME, Cups.WC2014.URL + Cups.WC2014.MENU_ITEMS.QUARTER_FINAL.URL, cupWc2014));
-        cupMenuItemsRepository.save(new CupMenuItemEntity(Cups.WC2014.MENU_ITEMS.SEMI_FINAL.NAME, Cups.WC2014.URL + Cups.WC2014.MENU_ITEMS.SEMI_FINAL.URL, cupWc2014));
-        cupMenuItemsRepository.save(new CupMenuItemEntity(Cups.WC2014.MENU_ITEMS.FINAL.NAME, Cups.WC2014.URL + Cups.WC2014.MENU_ITEMS.FINAL.URL, cupWc2014));
+        cupStagesRepository.save(new CupStageEntity(Cups.WC2014.MENU_ITEMS.GROUPS_STAGE.NAME, Cups.WC2014.URL + Cups.WC2014.MENU_ITEMS.GROUPS_STAGE.URL, cupWc2014));
+        cupStagesRepository.save(new CupStageEntity(Cups.WC2014.MENU_ITEMS.ROUND_OF_16.NAME, Cups.WC2014.URL + Cups.WC2014.MENU_ITEMS.ROUND_OF_16.URL, cupWc2014));
+        cupStagesRepository.save(new CupStageEntity(Cups.WC2014.MENU_ITEMS.QUARTER_FINAL.NAME, Cups.WC2014.URL + Cups.WC2014.MENU_ITEMS.QUARTER_FINAL.URL, cupWc2014));
+        cupStagesRepository.save(new CupStageEntity(Cups.WC2014.MENU_ITEMS.SEMI_FINAL.NAME, Cups.WC2014.URL + Cups.WC2014.MENU_ITEMS.SEMI_FINAL.URL, cupWc2014));
+        cupStagesRepository.save(new CupStageEntity(Cups.WC2014.MENU_ITEMS.FINAL.NAME, Cups.WC2014.URL + Cups.WC2014.MENU_ITEMS.FINAL.URL, cupWc2014));
         cupMenuItemsRepository.save(new CupMenuItemEntity(Cups.WC2014.MENU_ITEMS.OTHERS.NAME, Cups.WC2014.URL + Cups.WC2014.MENU_ITEMS.OTHERS.URL, cupWc2014));
         cupMenuItemsRepository.save(new CupMenuItemEntity(Cups.WC2014.MENU_ITEMS.SEPARATOR.NAME, "", cupWc2014));
         cupMenuItemsRepository.save(new CupMenuItemEntity(Cups.WC2014.MENU_ITEMS.SCORES.NAME, Cups.WC2014.URL + Cups.WC2014.MENU_ITEMS.SCORES.URL, cupWc2014));
         cupMenuItemsRepository.save(new CupMenuItemEntity(Cups.WC2014.MENU_ITEMS.SEPARATOR.NAME, "", cupWc2014));
         cupMenuItemsRepository.save(new CupMenuItemEntity(Cups.WC2014.MENU_ITEMS.HELP.NAME, Cups.WC2014.URL + Cups.WC2014.MENU_ITEMS.HELP.URL, cupWc2014));
 
-        cupMenuItemsRepository.save(new CupMenuItemEntity(Cups.EURO2016.MENU_ITEMS.GROUPS_STAGE.NAME, Cups.EURO2016.URL + Cups.EURO2016.MENU_ITEMS.GROUPS_STAGE.URL, cupEuro2016));
-        cupMenuItemsRepository.save(new CupMenuItemEntity(Cups.EURO2016.MENU_ITEMS.ROUND_OF_16.NAME, Cups.EURO2016.URL + Cups.EURO2016.MENU_ITEMS.ROUND_OF_16.URL, cupEuro2016));
-        cupMenuItemsRepository.save(new CupMenuItemEntity(Cups.EURO2016.MENU_ITEMS.QUARTER_FINAL.NAME, Cups.EURO2016.URL + Cups.EURO2016.MENU_ITEMS.QUARTER_FINAL.URL, cupEuro2016));
-        cupMenuItemsRepository.save(new CupMenuItemEntity(Cups.EURO2016.MENU_ITEMS.SEMI_FINAL.NAME, Cups.EURO2016.URL + Cups.EURO2016.MENU_ITEMS.SEMI_FINAL.URL, cupEuro2016));
-        cupMenuItemsRepository.save(new CupMenuItemEntity(Cups.EURO2016.MENU_ITEMS.FINAL.NAME, Cups.EURO2016.URL + Cups.EURO2016.MENU_ITEMS.FINAL.URL, cupEuro2016));
+        cupStagesRepository.save(new CupStageEntity(Cups.EURO2016.MENU_ITEMS.GROUPS_STAGE.NAME, Cups.EURO2016.URL + Cups.EURO2016.MENU_ITEMS.GROUPS_STAGE.URL, cupEuro2016));
+        cupStagesRepository.save(new CupStageEntity(Cups.EURO2016.MENU_ITEMS.ROUND_OF_16.NAME, Cups.EURO2016.URL + Cups.EURO2016.MENU_ITEMS.ROUND_OF_16.URL, cupEuro2016));
+        cupStagesRepository.save(new CupStageEntity(Cups.EURO2016.MENU_ITEMS.QUARTER_FINAL.NAME, Cups.EURO2016.URL + Cups.EURO2016.MENU_ITEMS.QUARTER_FINAL.URL, cupEuro2016));
+        cupStagesRepository.save(new CupStageEntity(Cups.EURO2016.MENU_ITEMS.SEMI_FINAL.NAME, Cups.EURO2016.URL + Cups.EURO2016.MENU_ITEMS.SEMI_FINAL.URL, cupEuro2016));
+        cupStagesRepository.save(new CupStageEntity(Cups.EURO2016.MENU_ITEMS.FINAL.NAME, Cups.EURO2016.URL + Cups.EURO2016.MENU_ITEMS.FINAL.URL, cupEuro2016));
         cupMenuItemsRepository.save(new CupMenuItemEntity(Cups.EURO2016.MENU_ITEMS.OTHERS.NAME, Cups.EURO2016.URL + Cups.EURO2016.MENU_ITEMS.OTHERS.URL, cupEuro2016));
         cupMenuItemsRepository.save(new CupMenuItemEntity(Cups.EURO2016.MENU_ITEMS.SEPARATOR.NAME, "", cupEuro2016));
         cupMenuItemsRepository.save(new CupMenuItemEntity(Cups.EURO2016.MENU_ITEMS.SCORES.NAME, Cups.EURO2016.URL + Cups.EURO2016.MENU_ITEMS.SCORES.URL, cupEuro2016));

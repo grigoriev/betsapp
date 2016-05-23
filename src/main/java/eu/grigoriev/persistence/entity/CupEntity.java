@@ -20,6 +20,9 @@ public class CupEntity implements Serializable {
     private String displayName;
 
     @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="cupEntity")
+    private List<CupStageEntity> cupStageEntities;
+
+    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="cupEntity")
     private List<CupMenuItemEntity> cupMenuItemEntities;
 
     @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="cupEntity")
@@ -90,6 +93,14 @@ public class CupEntity implements Serializable {
 
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
+    }
+
+    public List<CupStageEntity> getCupStageEntities() {
+        return cupStageEntities;
+    }
+
+    public void setCupStageEntities(List<CupStageEntity> cupStageEntities) {
+        this.cupStageEntities = cupStageEntities;
     }
 
     public List<CupMenuItemEntity> getCupMenuItemEntities() {
