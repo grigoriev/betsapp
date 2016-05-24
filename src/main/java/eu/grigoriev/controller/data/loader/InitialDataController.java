@@ -493,6 +493,63 @@ public class InitialDataController extends AbstractController {
     }
 
     public void matchesEuro2016() {
+        int serialNumber = 1;
+
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-10 19:00:00"), france, romania, matchTypeStandard, euro2016GroupStage))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-11 13:00:00"), albania, switzerland, matchTypeStandard, euro2016GroupStage))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-11 16:00:00"), wales, slovakia, matchTypeStandard, euro2016GroupStage))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-11 19:00:00"), england, russia, matchTypeStandard, euro2016GroupStage))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-12 13:00:00"), turkey, croatia, matchTypeStandard, euro2016GroupStage))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-12 16:00:00"), poland, northernIreland, matchTypeStandard, euro2016GroupStage))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-12 19:00:00"), germany, ukraine, matchTypeStandard, euro2016GroupStage))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-13 13:00:00"), spain, czechRepublic, matchTypeStandard, euro2016GroupStage))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-13 16:00:00"), ireland, sweden, matchTypeStandard, euro2016GroupStage))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-13 19:00:00"), belgium, italy, matchTypeStandard, euro2016GroupStage))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-14 16:00:00"), austria, hungary, matchTypeStandard, euro2016GroupStage))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-14 19:00:00"), portugal, iceland, matchTypeStandard, euro2016GroupStage))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-15 13:00:00"), russia, slovakia, matchTypeStandard, euro2016GroupStage))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-15 16:00:00"), romania, switzerland, matchTypeStandard, euro2016GroupStage))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-15 19:00:00"), france, albania, matchTypeStandard, euro2016GroupStage))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-16 13:00:00"), england, wales, matchTypeStandard, euro2016GroupStage))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-16 16:00:00"), ukraine, northernIreland, matchTypeStandard, euro2016GroupStage))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-16 19:00:00"), germany, poland, matchTypeStandard, euro2016GroupStage))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-17 13:00:00"), italy, sweden, matchTypeStandard, euro2016GroupStage))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-17 16:00:00"), czechRepublic, croatia, matchTypeStandard, euro2016GroupStage))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-17 19:00:00"), spain, turkey, matchTypeStandard, euro2016GroupStage))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-18 13:00:00"), belgium, ireland, matchTypeStandard, euro2016GroupStage))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-18 16:00:00"), iceland, hungary, matchTypeStandard, euro2016GroupStage))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-18 19:00:00"), portugal, austria, matchTypeStandard, euro2016GroupStage))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-19 19:00:00"), romania, albania, matchTypeStandard, euro2016GroupStage))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-19 19:00:00"), switzerland, france, matchTypeStandard, euro2016GroupStage))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-20 19:00:00"), russia, wales, matchTypeStandard, euro2016GroupStage))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-20 19:00:00"), slovakia, england, matchTypeStandard, euro2016GroupStage))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-21 16:00:00"), ukraine, poland, matchTypeStandard, euro2016GroupStage))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-21 16:00:00"), northernIreland, germany, matchTypeStandard, euro2016GroupStage))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-21 19:00:00"), czechRepublic, turkey, matchTypeStandard, euro2016GroupStage))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-21 19:00:00"), croatia, spain, matchTypeStandard, euro2016GroupStage))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-22 16:00:00"), iceland, austria, matchTypeStandard, euro2016GroupStage))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-22 16:00:00"), hungary, portugal, matchTypeStandard, euro2016GroupStage))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-22 19:00:00"), italy, ireland, matchTypeStandard, euro2016GroupStage))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-22 19:00:00"), sweden, belgium, matchTypeStandard, euro2016GroupStage))));
+
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-25 13:00:00"), null, null, matchTypeStandard, euro2016RoundOf16))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-25 16:00:00"), null, null, matchTypeStandard, euro2016RoundOf16))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-25 19:00:00"), null, null, matchTypeStandard, euro2016RoundOf16))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-26 13:00:00"), null, null, matchTypeStandard, euro2016RoundOf16))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-26 16:00:00"), null, null, matchTypeStandard, euro2016RoundOf16))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-26 19:00:00"), null, null, matchTypeStandard, euro2016RoundOf16))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-27 16:00:00"), null, null, matchTypeStandard, euro2016RoundOf16))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-27 19:00:00"), null, null, matchTypeStandard, euro2016RoundOf16))));
+
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-30 19:00:00"), null, null , matchTypeStandard, euro2016QuarterFinal))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-07-01 19:00:00"), null, null , matchTypeStandard, euro2016QuarterFinal))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-07-02 19:00:00"), null, null , matchTypeStandard, euro2016QuarterFinal))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-07-03 19:00:00"), null, null , matchTypeStandard, euro2016QuarterFinal))));
+
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-07-06 19:00:00"), null, null , matchTypeStandard, euro2016SemiFinal))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-07-07 19:00:00"), null, null , matchTypeStandard, euro2016SemiFinal))));
+
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-07-10 19:00:00"), null, null , matchTypeStandard, euro2016Final))));
     }
 
     public void groupsEuro2016() {
