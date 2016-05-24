@@ -8,7 +8,7 @@ import java.io.Serializable;
 @NamedQueries({
         @NamedQuery(
                 name = "TeamTypeEntity.findByType",
-                query = "from TeamTypeEntity teamType where teamType.type = :type"
+                query = "select teamType from TeamTypeEntity teamType where teamType.type = :type"
         )
 })
 public class TeamTypeEntity implements Serializable {

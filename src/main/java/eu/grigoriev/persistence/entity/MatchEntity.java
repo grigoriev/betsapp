@@ -7,6 +7,12 @@ import java.util.List;
 
 @Entity
 @Table(name = "matches")
+@NamedQueries({
+        @NamedQuery(
+                name = "MatchEntity.findByCupAndStage",
+                query = "select match from MatchEntity match where match.cupEntity = :cup and match.cupStageEntity = :cupStage"
+        )
+})
 public class MatchEntity implements Serializable {
 
     @Id

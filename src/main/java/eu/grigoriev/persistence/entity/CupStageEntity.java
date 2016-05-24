@@ -5,6 +5,12 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "cup_stages")
+@NamedQueries({
+        @NamedQuery(
+                name = "CupStageEntity.findByStage",
+                query = "select cupStage from CupStageEntity cupStage where cupStage.stage = :stage"
+        )
+})
 public class CupStageEntity implements Serializable {
 
     @Id

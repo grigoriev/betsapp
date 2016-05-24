@@ -6,6 +6,12 @@ import java.util.List;
 
 @Entity
 @Table(name = "cups")
+@NamedQueries({
+        @NamedQuery(
+                name = "CupEntity.findByName",
+                query = "select cup from CupEntity cup where cup.name = :name"
+        )
+})
 public class CupEntity implements Serializable {
 
     @Id

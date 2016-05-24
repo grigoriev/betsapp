@@ -6,6 +6,9 @@ public class Cups {
         public static final String DISPLAY_NAME = "WC 2014";
         public static final String URL = "/wc2014";
 
+        public static class STAGES extends COMMON_STAGES {
+        }
+
         public static class MENU_ITEMS extends COMMON_MENU_ITEMS {
 
         }
@@ -16,6 +19,9 @@ public class Cups {
         public static final String DISPLAY_NAME = "Euro 2016";
         public static final String URL = "/euro2016";
 
+        public static class STAGES extends COMMON_STAGES {
+        }
+
         public static class MENU_ITEMS extends COMMON_MENU_ITEMS {
             public static class PARTICIPANTS {
                 public static final String NAME = "Participants";
@@ -24,7 +30,7 @@ public class Cups {
         }
     }
 
-    private static class COMMON_MENU_ITEMS {
+    private static class COMMON_STAGES {
         public static class GROUPS_STAGE {
             public static final String NAME = "Group Stage";
             public static final String URL = "/group/stage";
@@ -45,6 +51,9 @@ public class Cups {
             public static final String NAME = "Final";
             public static final String URL = "/final";
         }
+    }
+
+    private static class COMMON_MENU_ITEMS {
         public static class OTHERS {
             public static final String NAME = "Others";
             public static final String URL = "/others";
