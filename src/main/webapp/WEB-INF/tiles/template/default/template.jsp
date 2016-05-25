@@ -10,6 +10,7 @@
 <head>
     <%@include file="../include/html_head.jsp" %>
     <link rel="stylesheet" href="<c:url value="/resources/css/index.css"/>">
+    <link rel="stylesheet" href="<c:url value="/resources/css/common.css"/>">
 </head>
 
 <body>

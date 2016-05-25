@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TimeZone;
 
 @Controller
 @RequestMapping(Mapping.INITIAL_DATA.ROOT)
@@ -173,8 +174,8 @@ public class InitialDataController extends AbstractController {
     }
 
     public void cups() {
-        cupWc2014 = cupsRepository.findById(cupsRepository.save(new CupEntity(Cups.WC2014.NAME, Cups.WC2014.DISPLAY_NAME)));
-        cupEuro2016 = cupsRepository.findById(cupsRepository.save(new CupEntity(Cups.EURO2016.NAME, Cups.EURO2016.DISPLAY_NAME)));
+        cupWc2014 = cupsRepository.findById(cupsRepository.save(new CupEntity(Cups.WC2014.NAME, Cups.WC2014.DISPLAY_NAME, Cups.WC2014.UTC_OFFSET)));
+        cupEuro2016 = cupsRepository.findById(cupsRepository.save(new CupEntity(Cups.EURO2016.NAME, Cups.EURO2016.DISPLAY_NAME, Cups.EURO2016.UTC_OFFSET)));
 
         wc2014GroupStage = cupStagesRepository.findById(cupStagesRepository.save(new CupStageEntity(Cups.WC2014.STAGES.GROUPS_STAGE.NAME, Cups.WC2014.URL + Cups.WC2014.STAGES.GROUPS_STAGE.URL, cupWc2014)));
         wc2014RoundOf16 = cupStagesRepository.findById(cupStagesRepository.save(new CupStageEntity(Cups.WC2014.STAGES.ROUND_OF_16.NAME, Cups.WC2014.URL + Cups.WC2014.STAGES.ROUND_OF_16.URL, cupWc2014)));
@@ -225,52 +226,52 @@ public class InitialDataController extends AbstractController {
     }
 
     public void teamsNational() {
-        albania = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.ALBANIA, "", teamTypeNational)));
-        algeria = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.ALGERIA, "", teamTypeNational)));
-        argentina = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.ARGENTINA, "", teamTypeNational)));
-        australia = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.AUSTRALIA, "", teamTypeNational)));
-        austria = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.AUSTRIA, "", teamTypeNational)));
-        belgium = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.BELGIUM, "", teamTypeNational)));
-        bosniaAndHerzegovina = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.BOSNIA_AND_HERZEGOVINA, "", teamTypeNational)));
-        brazil = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.BRAZIL, "", teamTypeNational)));
-        cameroon = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.CAMEROON, "", teamTypeNational)));
-        chile = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.CHILE, "", teamTypeNational)));
-        colombia = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.COLOMBIA, "", teamTypeNational)));
-        costaRica = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.COSTA_RICA, "", teamTypeNational)));
-        croatia = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.CROATIA, "", teamTypeNational)));
-        czechRepublic = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.CZECH_REPUBLIC, "", teamTypeNational)));
-        ecuador = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.ECUADOR, "", teamTypeNational)));
-        england = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.ENGLAND, "", teamTypeNational)));
-        france = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.FRANCE, "", teamTypeNational)));
-        germany = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.GERMANY, "", teamTypeNational)));
-        ghana = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.GHANA, "", teamTypeNational)));
-        greece = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.GREECE, "", teamTypeNational)));
-        honduras = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.HONDURAS, "", teamTypeNational)));
-        hungary = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.HUNGARY, "", teamTypeNational)));
-        iceland = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.ICELAND, "", teamTypeNational)));
-        iran = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.IRAN, "", teamTypeNational)));
-        ireland = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.IRELAND, "", teamTypeNational)));
-        italy = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.ITALY, "", teamTypeNational)));
-        ivoryCoast = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.IVORY_COAST, "", teamTypeNational)));
-        japan = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.JAPAN, "", teamTypeNational)));
-        mexico = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.MEXICO, "", teamTypeNational)));
-        netherlands = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.NETHERLANDS, "", teamTypeNational)));
-        nigeria = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.NIGERIA, "", teamTypeNational)));
-        northernIreland = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.NORTHERN_IRELAND, "", teamTypeNational)));
-        poland = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.POLAND, "", teamTypeNational)));
-        portugal = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.PORTUGAL, "", teamTypeNational)));
-        romania = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.ROMANIA, "", teamTypeNational)));
-        russia = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.RUSSIA, "", teamTypeNational)));
-        slovakia = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.SLOVAKIA, "", teamTypeNational)));
-        southKorea = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.SOUTH_KOREA, "", teamTypeNational)));
-        spain = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.SPAIN, "", teamTypeNational)));
-        sweden = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.SWEDEN, "", teamTypeNational)));
-        switzerland = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.SWITZERLAND, "", teamTypeNational)));
-        turkey = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.TURKEY, "", teamTypeNational)));
-        ukraine = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.UKRAINE, "", teamTypeNational)));
-        uruguay = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.URUGUAY, "", teamTypeNational)));
-        usa = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.USA, "", teamTypeNational)));
-        wales = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.WALES, "", teamTypeNational)));
+        albania = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.ALBANIA, teamTypeNational)));
+        algeria = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.ALGERIA, teamTypeNational)));
+        argentina = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.ARGENTINA, teamTypeNational)));
+        australia = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.AUSTRALIA, teamTypeNational)));
+        austria = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.AUSTRIA, teamTypeNational)));
+        belgium = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.BELGIUM, teamTypeNational)));
+        bosniaAndHerzegovina = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.BOSNIA_AND_HERZEGOVINA, teamTypeNational)));
+        brazil = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.BRAZIL, teamTypeNational)));
+        cameroon = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.CAMEROON, teamTypeNational)));
+        chile = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.CHILE, teamTypeNational)));
+        colombia = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.COLOMBIA, teamTypeNational)));
+        costaRica = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.COSTA_RICA, teamTypeNational)));
+        croatia = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.CROATIA, teamTypeNational)));
+        czechRepublic = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.CZECH_REPUBLIC, teamTypeNational)));
+        ecuador = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.ECUADOR, teamTypeNational)));
+        england = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.ENGLAND, teamTypeNational)));
+        france = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.FRANCE, teamTypeNational)));
+        germany = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.GERMANY, teamTypeNational)));
+        ghana = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.GHANA, teamTypeNational)));
+        greece = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.GREECE, teamTypeNational)));
+        honduras = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.HONDURAS, teamTypeNational)));
+        hungary = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.HUNGARY, teamTypeNational)));
+        iceland = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.ICELAND, teamTypeNational)));
+        iran = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.IRAN, teamTypeNational)));
+        ireland = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.IRELAND, teamTypeNational)));
+        italy = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.ITALY, teamTypeNational)));
+        ivoryCoast = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.IVORY_COAST, teamTypeNational)));
+        japan = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.JAPAN, teamTypeNational)));
+        mexico = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.MEXICO, teamTypeNational)));
+        netherlands = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.NETHERLANDS, teamTypeNational)));
+        nigeria = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.NIGERIA, teamTypeNational)));
+        northernIreland = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.NORTHERN_IRELAND, teamTypeNational)));
+        poland = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.POLAND, teamTypeNational)));
+        portugal = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.PORTUGAL, teamTypeNational)));
+        romania = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.ROMANIA, teamTypeNational)));
+        russia = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.RUSSIA, teamTypeNational)));
+        slovakia = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.SLOVAKIA, teamTypeNational)));
+        southKorea = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.SOUTH_KOREA, teamTypeNational)));
+        spain = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.SPAIN, teamTypeNational)));
+        sweden = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.SWEDEN, teamTypeNational)));
+        switzerland = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.SWITZERLAND, teamTypeNational)));
+        turkey = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.TURKEY, teamTypeNational)));
+        ukraine = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.UKRAINE, teamTypeNational)));
+        uruguay = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.URUGUAY, teamTypeNational)));
+        usa = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.USA, teamTypeNational)));
+        wales = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.National.WALES, teamTypeNational)));
 
         List<TeamEntity> teamsWc2014 = new ArrayList<>();
         teamsWc2014.add(algeria);
@@ -338,12 +339,13 @@ public class InitialDataController extends AbstractController {
     }
 
     public void teamsClub() {
-        TeamEntity fcBarcelona = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.Club.FC_BARCELONA, "", teamTypeClub)));
-        TeamEntity fcBayern = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.Club.FC_BAYERN, "", teamTypeClub)));
+        TeamEntity fcBarcelona = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.Club.FC_BARCELONA, teamTypeClub)));
+        TeamEntity fcBayern = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.Club.FC_BAYERN, teamTypeClub)));
     }
 
     public void matchesWc2014() {
         int serialNumber = 1;
+        TimeZone.setDefault(TimeZone.getTimeZone("GMT"));
 
         wc2014Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupWc2014, Timestamp.valueOf("2014-06-12 20:00:00"), brazil, croatia, matchTypeStandard, wc2014GroupStage))));
         wc2014Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupWc2014, Timestamp.valueOf("2014-06-13 16:00:00"), mexico, cameroon, matchTypeStandard, wc2014GroupStage))));
@@ -541,15 +543,15 @@ public class InitialDataController extends AbstractController {
         euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-27 16:00:00"), null, null, matchTypeStandard, euro2016RoundOf16))));
         euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-27 19:00:00"), null, null, matchTypeStandard, euro2016RoundOf16))));
 
-        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-30 19:00:00"), null, null , matchTypeStandard, euro2016QuarterFinal))));
-        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-07-01 19:00:00"), null, null , matchTypeStandard, euro2016QuarterFinal))));
-        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-07-02 19:00:00"), null, null , matchTypeStandard, euro2016QuarterFinal))));
-        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-07-03 19:00:00"), null, null , matchTypeStandard, euro2016QuarterFinal))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-30 19:00:00"), null, null, matchTypeStandard, euro2016QuarterFinal))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-07-01 19:00:00"), null, null, matchTypeStandard, euro2016QuarterFinal))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-07-02 19:00:00"), null, null, matchTypeStandard, euro2016QuarterFinal))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-07-03 19:00:00"), null, null, matchTypeStandard, euro2016QuarterFinal))));
 
-        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-07-06 19:00:00"), null, null , matchTypeStandard, euro2016SemiFinal))));
-        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-07-07 19:00:00"), null, null , matchTypeStandard, euro2016SemiFinal))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-07-06 19:00:00"), null, null, matchTypeStandard, euro2016SemiFinal))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-07-07 19:00:00"), null, null, matchTypeStandard, euro2016SemiFinal))));
 
-        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-07-10 19:00:00"), null, null , matchTypeStandard, euro2016Final))));
+        euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-07-10 19:00:00"), null, null, matchTypeStandard, euro2016Final))));
     }
 
     public void groupsEuro2016() {

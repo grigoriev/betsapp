@@ -1,9 +1,16 @@
 package eu.grigoriev.persistence.entity;
 
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Entity
 @Table(name = "matches")
@@ -24,27 +31,30 @@ public class MatchEntity implements Serializable {
     private Integer serialNumber;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="cup_id")
+    @JoinColumn(name = "cup_id")
     private CupEntity cupEntity;
 
-    @Column(name = "timestamp")
-    private Timestamp timestamp;
+    @Column(name = "start_time", columnDefinition = "DATETIME")
+    private Timestamp startTime;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="host_team_id")
+    @JoinColumn(name = "host_team_id")
     private TeamEntity hostTeamEntity;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="guest_team_id")
+    @JoinColumn(name = "guest_team_id")
     private TeamEntity guestTeamEntity;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="match_type_id")
+    @JoinColumn(name = "match_type_id")
     private MatchTypeEntity matchTypeEntity;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="cup_stage_id")
+    @JoinColumn(name = "cup_stage_id")
     private CupStageEntity cupStageEntity;
+
+    @Column(name = "finished")
+    private Boolean finished;
 
     @Column(name = "host_scores")
     private Integer hostScores;
@@ -64,20 +74,21 @@ public class MatchEntity implements Serializable {
     @Column(name = "guest_penalty_series_scores")
     private Integer guestPenaltySeriesScores;
 
-    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="matchEntity")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "matchEntity")
     private List<BetEntity> betEntities;
 
     public MatchEntity() {
     }
 
-    public MatchEntity(Integer serialNumber, CupEntity cupEntity, Timestamp timestamp, TeamEntity hostTeamEntity, TeamEntity guestTeamEntity, MatchTypeEntity matchTypeEntity, CupStageEntity cupStageEntity) {
+    public MatchEntity(Integer serialNumber, CupEntity cupEntity, Timestamp startTime, TeamEntity hostTeamEntity, TeamEntity guestTeamEntity, MatchTypeEntity matchTypeEntity, CupStageEntity cupStageEntity) {
         this.serialNumber = serialNumber;
         this.cupEntity = cupEntity;
-        this.timestamp = timestamp;
+        this.startTime = startTime;
         this.hostTeamEntity = hostTeamEntity;
         this.guestTeamEntity = guestTeamEntity;
         this.matchTypeEntity = matchTypeEntity;
         this.cupStageEntity = cupStageEntity;
+        this.finished = false;
     }
 
     public Integer getId() {
@@ -102,14 +113,6 @@ public class MatchEntity implements Serializable {
 
     public void setCupEntity(CupEntity cupEntity) {
         this.cupEntity = cupEntity;
-    }
-
-    public Timestamp getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
     }
 
     public TeamEntity getHostTeamEntity() {
@@ -142,6 +145,14 @@ public class MatchEntity implements Serializable {
 
     public void setCupStageEntity(CupStageEntity cupStageEntity) {
         this.cupStageEntity = cupStageEntity;
+    }
+
+    public Boolean getFinished() {
+        return finished;
+    }
+
+    public void setFinished(Boolean finished) {
+        this.finished = finished;
     }
 
     public Integer getHostScores() {
@@ -201,11 +212,13 @@ public class MatchEntity implements Serializable {
     }
 
     public void setResult(int hostScores, int guestScores) {
+        setFinished(true);
         setHostScores(hostScores);
         setGuestScores(guestScores);
     }
 
     public void setResult(int hostScores, int guestScores, int hostAetScores, int guestAetScores) {
+        setFinished(true);
         setHostScores(hostScores);
         setGuestScores(guestScores);
         setHostAetScores(hostAetScores);
@@ -213,11 +226,31 @@ public class MatchEntity implements Serializable {
     }
 
     public void setResult(int hostScores, int guestScores, int hostAetScores, int guestAetScores, int hostPenaltySeriesScores, int guestPenaltySeriesScores) {
+        setFinished(true);
         setHostScores(hostScores);
         setGuestScores(guestScores);
         setHostAetScores(hostAetScores);
         setGuestAetScores(guestAetScores);
         setHostPenaltySeriesScores(hostPenaltySeriesScores);
         setGuestPenaltySeriesScores(guestPenaltySeriesScores);
+    }
+
+    public String getDate() {
+        DateTime dateTime = new DateTime(this.startTime.getTime());
+
+        DateTime dateTimeWc2014 = dateTime.toDateTime(DateTimeZone.forOffsetHours(cupEntity.getUtcOffset()));
+        DateTimeFormatter dateTimeFormatterDate = DateTimeFormat.forPattern("dd.MM.yyyy");
+        return dateTimeFormatterDate.print(dateTimeWc2014);
+    }
+
+    public String getTime() {
+        DateTime dateTime = new DateTime(this.startTime.getTime());
+
+        DateTime dateTimeWithTimeZone = dateTime.toDateTime(DateTimeZone.forOffsetHours(cupEntity.getUtcOffset()));
+        DateTimeFormatter dateTimeFormatterTime = DateTimeFormat.forPattern("HH:mm");
+
+        long offsetInHours = TimeUnit.MILLISECONDS.toHours(dateTimeWithTimeZone.getZone().getOffset(DateTime.now().getMillis()));
+
+        return dateTimeFormatterTime.print(dateTimeWithTimeZone) + " UTC" + ((offsetInHours < 0) ? offsetInHours : "+" + offsetInHours);
     }
 }

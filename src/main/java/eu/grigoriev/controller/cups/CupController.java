@@ -8,9 +8,11 @@ import eu.grigoriev.persistence.service.CupStagesRepository;
 import eu.grigoriev.persistence.service.CupsRepository;
 import eu.grigoriev.persistence.service.MatchesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 import java.util.List;
 
+@Controller
 public abstract class CupController extends AbstractController {
     @Autowired
     CupsRepository cupsRepository;

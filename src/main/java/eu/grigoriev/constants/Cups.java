@@ -5,6 +5,7 @@ public class Cups {
         public static final String NAME = "WC2014";
         public static final String DISPLAY_NAME = "WC 2014";
         public static final String URL = "/wc2014";
+        public static final Integer UTC_OFFSET = -3;
 
         public static class STAGES extends COMMON_STAGES {
         }
@@ -18,6 +19,7 @@ public class Cups {
         public static final String NAME = "EURO2016";
         public static final String DISPLAY_NAME = "Euro 2016";
         public static final String URL = "/euro2016";
+        public static final Integer UTC_OFFSET = +2;
 
         public static class STAGES extends COMMON_STAGES {
         }

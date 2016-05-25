@@ -1,0 +1,80 @@
+/* table.team */
+table.team {
+    border: none;
+    width: 100%;
+}
+
+table.team td, table.team th {
+    background: transparent;
+    border: none;
+    padding: 3px;
+    text-align: center;
+}
+
+table.team td:first-child {
+    background: transparent;
+    text-align: right;
+    margin-left: 5px;
+    width: 100px;
+}
+
+table.team td:last-child {
+    background: transparent;
+    text-align: left;
+    margin-right: 5px;
+    width: 100px;
+}
+
+/* table.team */
+
+/* table.matches */
+table.matches {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    border: solid #999 2px;
+    box-shadow: 0 1px 1px #999;
+}
+
+.matches tbody:hover td[rowspan], .matches tr:hover td {
+    background: #fbf8e9;
+}
+
+.matches td, .matches th {
+    border-right: 1px solid #999;
+    border-top: 1px solid #999;
+    padding: 3px;
+    text-align: center;
+}
+
+.matches th {
+    border-top: none;
+    background-color: #dce9f9;
+}
+
+table.matches td:first-child, table.matches th:first-child {
+    border-left: none;
+}
+
+table.matches td:last-child, table.matches th:last-child {
+    border-right: none;
+}
+
+/* table.matches */
+
+/* flag */
+.flag {
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 28px;
+    height: 20px;
+    border: 1px solid #000000;
+}
+
+.Switzerland {
+    margin-left: 4px;
+    margin-right: 4px;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #000000;
+}
+/* flag */

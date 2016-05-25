@@ -1,5 +1,7 @@
 package eu.grigoriev.persistence.entity;
 
+import eu.grigoriev.constants.Teams;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -28,6 +30,17 @@ public class TeamEntity implements Serializable {
     private List<CupEntity> cupEntities;
 
     public TeamEntity() {
+    }
+
+    public TeamEntity(String name, TeamTypeEntity teamTypeEntity) {
+        this.name = name;
+        this.teamTypeEntity = teamTypeEntity;
+        if (teamTypeEntity.getType().equals(Teams.Types.NATIONAL)) {
+            this.logo = "/resources/img/flags/Flag_of_" + name.replaceAll(" ", "_") + ".svg.png";
+        }
+        if (teamTypeEntity.getType().equals(Teams.Types.CLUB)) {
+            this.logo = "/resources/img/logos/" + name.replaceAll(" ", "_") + ".png";
+        }
     }
 
     public TeamEntity(String name, String logo, TeamTypeEntity teamTypeEntity) {
