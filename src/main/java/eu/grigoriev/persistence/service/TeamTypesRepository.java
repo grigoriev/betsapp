@@ -1,7 +1,5 @@
 package eu.grigoriev.persistence.service;
 
-import eu.grigoriev.persistence.entity.MatchTypeEntity;
-import eu.grigoriev.persistence.entity.TeamEntity;
 import eu.grigoriev.persistence.entity.TeamTypeEntity;
 import eu.grigoriev.persistence.generic.AbstractRepository;
 import org.hibernate.Query;

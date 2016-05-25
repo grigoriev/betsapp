@@ -11,11 +11,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class CupStagesRepository extends AbstractRepository<CupStageEntity, Integer> {
+
     @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-    public CupStageEntity findByName(String name) {
+    public CupStageEntity findByCupAndName(CupEntity cup, String stage) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.getNamedQuery("CupStageEntity.findByName")
-                .setString("name", name);
+        Query query = session.getNamedQuery("CupStageEntity.findByCupAndName")
+                .setEntity("cup", cup)
+                .setString("stage", stage);
 
         return (CupStageEntity) query.uniqueResult();
     }

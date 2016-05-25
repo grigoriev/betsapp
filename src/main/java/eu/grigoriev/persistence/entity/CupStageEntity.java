@@ -7,8 +7,8 @@ import java.io.Serializable;
 @Table(name = "cup_stages")
 @NamedQueries({
         @NamedQuery(
-                name = "CupStageEntity.findByStage",
-                query = "select cupStage from CupStageEntity cupStage where cupStage.stage = :stage"
+                name = "CupStageEntity.findByCupAndName",
+                query = "select cupStage from CupStageEntity cupStage where cupStage.cupEntity = :cup and cupStage.stage = :stage"
         )
 })
 public class CupStageEntity implements Serializable {

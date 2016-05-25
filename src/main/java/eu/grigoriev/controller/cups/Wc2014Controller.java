@@ -21,30 +21,18 @@ import java.util.List;
 
 @Controller
 @RequestMapping(Mapping.WC2014.ROOT)
-public class Wc2014Controller extends AbstractController {
-
-    @Autowired
-    CupsRepository cupsRepository;
-
-    @Autowired
-    CupStagesRepository cupStagesRepository;
-
-    @Autowired
-    MatchesRepository matchesRepository;
+public class Wc2014Controller extends CupController {
 
     @RequestMapping(method = {RequestMethod.GET, RequestMethod.HEAD})
     public String index() {
-        return "cup/matches";
+        return "redirect:" + Mapping.WC2014.ROOT + Mapping.WC2014.GROUP_STAGE;
     }
 
     @RequestMapping(value = Mapping.WC2014.GROUP_STAGE, method = {RequestMethod.GET, RequestMethod.HEAD})
     public String groupStage(
             ModelMap modelMap
     ) {
-        CupEntity cupWc2014 = cupsRepository.findByName(Cups.WC2014.NAME);
-        CupStageEntity stage = cupStagesRepository.findByName(Cups.WC2014.STAGES.GROUPS_STAGE.NAME);
-
-        List<MatchEntity> matchEntities = matchesRepository.findByCupAndStage(cupWc2014, stage);
+        List<MatchEntity> matchEntities = getMatchEntitiesForCupStage(Cups.WC2014.NAME, Cups.WC2014.STAGES.GROUPS_STAGE.NAME);
         modelMap.addAttribute("matches", matchEntities);
 
         return "cup/matches";
@@ -54,6 +42,8 @@ public class Wc2014Controller extends AbstractController {
     public String roundOf16(
             ModelMap modelMap
     ) {
+        List<MatchEntity> matchEntities = getMatchEntitiesForCupStage(Cups.WC2014.NAME, Cups.WC2014.STAGES.ROUND_OF_16.NAME);
+        modelMap.addAttribute("matches", matchEntities);
 
         return "cup/matches";
     }
@@ -62,6 +52,8 @@ public class Wc2014Controller extends AbstractController {
     public String quarterFinal(
             ModelMap modelMap
     ) {
+        List<MatchEntity> matchEntities = getMatchEntitiesForCupStage(Cups.WC2014.NAME, Cups.WC2014.STAGES.QUARTER_FINAL.NAME);
+        modelMap.addAttribute("matches", matchEntities);
 
         return "cup/matches";
     }
@@ -70,6 +62,8 @@ public class Wc2014Controller extends AbstractController {
     public String semiFinal(
             ModelMap modelMap
     ) {
+        List<MatchEntity> matchEntities = getMatchEntitiesForCupStage(Cups.WC2014.NAME, Cups.WC2014.STAGES.SEMI_FINAL.NAME);
+        modelMap.addAttribute("matches", matchEntities);
 
         return "cup/matches";
     }
@@ -78,6 +72,8 @@ public class Wc2014Controller extends AbstractController {
     public String finalStage(
             ModelMap modelMap
     ) {
+        List<MatchEntity> matchEntities = getMatchEntitiesForCupStage(Cups.WC2014.NAME, Cups.WC2014.STAGES.FINAL.NAME);
+        modelMap.addAttribute("matches", matchEntities);
 
         return "cup/matches";
     }
