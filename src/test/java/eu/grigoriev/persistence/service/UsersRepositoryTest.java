@@ -45,6 +45,7 @@ public class UsersRepositoryTest {
                 "username",
                 DigestUtils.md5Hex("password"),
                 "User Name",
+                "UN",
                 true,
                 false,
                 false,

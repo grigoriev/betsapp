@@ -29,7 +29,7 @@
                         <th>Match</th>
                         <th>Result</th>
                         <c:forEach var="user" items="${currentCup.userEntities}">
-                            <th>${user.username}</th>
+                            <th title="${user.display}">${user.abbreviation}</th>
                         </c:forEach>
                     </tr>
                     </thead>
@@ -50,19 +50,36 @@
                                     </tr>
                                 </table>
                             </td>
-                            <td class="result">
+                            <td class="result"
+                                title="
                                 <c:choose>
-                                    <c:when test="${match.finished}">
+                                    <c:when test="${match.finished == true}">
+                                        <c:choose>
+                                            <c:when test="${match.matchTypeEntity.type == 'AET'}">
+                                                AET ${match.hostAetScores}:${match.guestAetScores} (${match.hostScores}:${match.guestScores})
+                                            </c:when>
+                                            <c:when test="${match.matchTypeEntity.type == 'PENALTY'}">
+                                                Penalty ${match.hostPenaltySeriesScores}:${match.guestPenaltySeriesScores} - AET ${match.hostAetScores}:${match.guestAetScores} (${match.hostScores}:${match.guestScores})
+                                            </c:when>
+                                        </c:choose>
+                                    </c:when>
+                                    <c:otherwise>
+                                        Not finished
+                                    </c:otherwise>
+                                </c:choose>
+                                "
+                            >
+                                <c:choose>
+                                    <c:when test="${match.finished == true}">
                                         <c:choose>
                                             <c:when test="${match.matchTypeEntity.type == 'STANDARD'}">
                                                 ${match.hostScores}:${match.guestScores}
                                             </c:when>
                                             <c:when test="${match.matchTypeEntity.type == 'AET'}">
-                                                AET ${match.hostAetScores}:${match.guestAetScores} (${match.hostScores}:${match.guestScores})
+                                                ${match.hostAetScores}:${match.guestAetScores}
                                             </c:when>
                                             <c:when test="${match.matchTypeEntity.type == 'PENALTY'}">
-                                                Penalty ${match.hostPenaltySeriesScores}:${match.guestPenaltySeriesScores} <br/>
-                                                AET ${match.hostAetScores}:${match.guestAetScores} (${match.hostScores}:${match.guestScores})
+                                                ${match.hostAetScores}:${match.guestAetScores}
                                             </c:when>
                                         </c:choose>
                                     </c:when>

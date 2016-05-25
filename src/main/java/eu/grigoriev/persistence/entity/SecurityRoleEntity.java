@@ -5,6 +5,12 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "security_roles")
+@NamedQueries({
+        @NamedQuery(
+                name = "SecurityRoleEntity.findByRole",
+                query = "select securityRole from SecurityRoleEntity securityRole where securityRole.role = :role"
+        )
+})
 public class SecurityRoleEntity implements Serializable {
 
     @Id

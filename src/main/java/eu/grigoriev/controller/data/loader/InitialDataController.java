@@ -206,18 +206,20 @@ public class InitialDataController extends AbstractController {
     }
 
     private void cupsForUsers() {
+        List<CupEntity> sgCups = new ArrayList<>();
+        sgCups.add(cupWc2014);
+        List<UserEntity> userEntities = usersRepository.findAll();
+        for (UserEntity userEntity : userEntities) {
+            userEntity.setCupEntities(sgCups);
+            usersRepository.update(userEntity);
+        }
+
         UserEntity grigoriev = usersRepository.findByName("grigoriev");
         List<CupEntity> grigorievCups = new ArrayList<>();
         grigorievCups.add(cupWc2014);
         grigorievCups.add(cupEuro2016);
         grigoriev.setCupEntities(grigorievCups);
         usersRepository.update(grigoriev);
-
-        UserEntity sg = usersRepository.findByName("sg");
-        List<CupEntity> sgCups = new ArrayList<>();
-        sgCups.add(cupWc2014);
-        sg.setCupEntities(sgCups);
-        usersRepository.update(sg);
     }
 
     public void types() {
@@ -407,7 +409,7 @@ public class InitialDataController extends AbstractController {
         wc2014Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupWc2014, Timestamp.valueOf("2014-06-30 16:00:00"), france, nigeria, matchTypeStandard, wc2014RoundOf16))));
         wc2014Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupWc2014, Timestamp.valueOf("2014-06-30 20:00:00"), germany, algeria, matchTypeAet, wc2014RoundOf16))));
         wc2014Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupWc2014, Timestamp.valueOf("2014-07-01 16:00:00"), argentina, switzerland, matchTypeAet, wc2014RoundOf16))));
-        wc2014Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupWc2014, Timestamp.valueOf("2014-07-01 20:00:00"), belgium, usa, matchTypeAet, wc2014RoundOf16))));
+        wc2014Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupWc2014, Timestamp.valueOf("2014-07-01 20:00:00"), belgium, usa, matchTypeStandard, wc2014RoundOf16))));
 
         wc2014Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupWc2014, Timestamp.valueOf("2014-07-04 16:00:00"), france, germany, matchTypeStandard, wc2014QuarterFinal))));
         wc2014Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupWc2014, Timestamp.valueOf("2014-07-04 20:00:00"), brazil, colombia, matchTypeStandard, wc2014QuarterFinal))));
@@ -479,10 +481,10 @@ public class InitialDataController extends AbstractController {
         (wc2014Matches.get(serialNumber++)).setResult(0, 0, 1, 0);
         (wc2014Matches.get(serialNumber++)).setResult(2, 1);
 
-        (wc2014Matches.get(serialNumber++)).setResult(2, 1);
         (wc2014Matches.get(serialNumber++)).setResult(0, 1);
-        (wc2014Matches.get(serialNumber++)).setResult(0, 0, 0, 0, 4, 3);
+        (wc2014Matches.get(serialNumber++)).setResult(2, 1);
         (wc2014Matches.get(serialNumber++)).setResult(1, 0);
+        (wc2014Matches.get(serialNumber++)).setResult(0, 0, 0, 0, 4, 3);
 
         (wc2014Matches.get(serialNumber++)).setResult(1, 7);
         (wc2014Matches.get(serialNumber++)).setResult(0, 0, 0, 0, 2, 4);
@@ -500,6 +502,7 @@ public class InitialDataController extends AbstractController {
 
     public void matchesEuro2016() {
         int serialNumber = 1;
+        TimeZone.setDefault(TimeZone.getTimeZone("GMT"));
 
         euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-10 19:00:00"), france, romania, matchTypeStandard, euro2016GroupStage))));
         euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-06-11 13:00:00"), albania, switzerland, matchTypeStandard, euro2016GroupStage))));

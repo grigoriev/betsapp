@@ -31,8 +31,13 @@ public class Mapping {
         public static final String EURO2016 = Cups.EURO2016.URL;
     }
 
-    public static class INITIAL_DEPLOYMENT {
-        public static final String ROOT = "/initial/deployment";
+    public static class INITIAL_ADMIN {
+        public static final String ROOT = "/initial/admin";
+        public static final String CREATE = "/create";
+    }
+
+    public class INITIAL_USER {
+        public static final String ROOT = "/initial/user";
         public static final String ADD_USERS = "/add/users";
     }
 
@@ -53,4 +58,5 @@ public class Mapping {
         public static final String SEMI_FINAL = Cups.EURO2016.STAGES.SEMI_FINAL.URL;
         public static final String FINAL = Cups.EURO2016.STAGES.FINAL.URL;
     }
+
 }

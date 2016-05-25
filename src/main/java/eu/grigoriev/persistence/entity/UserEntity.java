@@ -28,6 +28,9 @@ public class UserEntity implements Serializable {
     @Column(name = "display")
     private String display;
 
+    @Column(name = "abbreviation")
+    private String abbreviation;
+
     @Column(name = "enabled")
     private boolean enabled;
 
@@ -60,10 +63,11 @@ public class UserEntity implements Serializable {
     public UserEntity() {
     }
 
-    public UserEntity(String username, String password, String display, boolean enabled, boolean expired, boolean locked, SecurityRoleEntity securityRoleEntity) {
+    public UserEntity(String username, String password, String display, String abbreviation, boolean enabled, boolean expired, boolean locked, SecurityRoleEntity securityRoleEntity) {
         this.username = username;
         this.password = password;
         this.display = display;
+        this.abbreviation = abbreviation;
         this.enabled = enabled;
         this.expired = expired;
         this.locked = locked;
@@ -100,6 +104,14 @@ public class UserEntity implements Serializable {
 
     public void setDisplay(String display) {
         this.display = display;
+    }
+
+    public String getAbbreviation() {
+        return abbreviation;
+    }
+
+    public void setAbbreviation(String abbreviation) {
+        this.abbreviation = abbreviation;
     }
 
     public boolean isEnabled() {

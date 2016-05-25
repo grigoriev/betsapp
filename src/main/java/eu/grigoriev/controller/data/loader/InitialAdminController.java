@@ -1,12 +1,12 @@
 package eu.grigoriev.controller.data.loader;
 
+import eu.grigoriev.model.response.general.SuccessResponse;
 import eu.grigoriev.persistence.entity.SecurityRoleEntity;
 import eu.grigoriev.persistence.entity.UserEntity;
 import eu.grigoriev.persistence.service.SecurityRolesRepository;
 import eu.grigoriev.persistence.service.UsersRepository;
 import eu.grigoriev.utils.mapping.Mapping;
 import eu.grigoriev.utils.security.Roles;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 @Controller
-@RequestMapping(Mapping.INITIAL_DEPLOYMENT.ROOT)
-public class InitialDeploymentController {
+@RequestMapping(Mapping.INITIAL_ADMIN.ROOT)
+public class InitialAdminController {
 
     @Autowired
     UsersRepository usersRepository;
@@ -25,9 +25,9 @@ public class InitialDeploymentController {
     @Autowired
     SecurityRolesRepository securityRolesRepository;
 
-    @RequestMapping(value = Mapping.INITIAL_DEPLOYMENT.ADD_USERS, method = {RequestMethod.GET, RequestMethod.HEAD})
+    @RequestMapping(value = Mapping.INITIAL_ADMIN.CREATE, method = {RequestMethod.GET, RequestMethod.HEAD})
     @ResponseBody
-    public UserEntity[] clearAllAndAddUsers() {
+    public SuccessResponse clearAllUsersAndAddAdmin() {
         List<UserEntity> userEntities = usersRepository.findAll();
         for (UserEntity userEntity : userEntities) {
             usersRepository.delete(userEntity.getId());
@@ -57,18 +57,8 @@ public class InitialDeploymentController {
         userAdminEntity.setDisplay("Sergey Grigoriev");
         userAdminEntity.setSecurityRoleEntity(securityRoleAdminEntity);
 
-        UserEntity userUserEntity = new UserEntity();
-        userUserEntity.setUsername("sg");
-        userUserEntity.setPassword("72aaf68408b9a37aa0f1e5faef33ef7d");
-        userUserEntity.setEnabled(true);
-        userUserEntity.setExpired(false);
-        userUserEntity.setLocked(false);
-        userUserEntity.setDisplay("Sergey Grigoriev");
-        userUserEntity.setSecurityRoleEntity(securityRoleUserEntity);
-
         usersRepository.save(userAdminEntity);
-        usersRepository.save(userUserEntity);
 
-        return new UserEntity[]{userAdminEntity, userUserEntity};
+        return new SuccessResponse();
     }
 }
