@@ -9,6 +9,7 @@ import eu.grigoriev.persistence.service.CupsRepository;
 import eu.grigoriev.persistence.service.MatchesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.List;
 
@@ -23,10 +24,13 @@ public abstract class CupController extends AbstractController {
     @Autowired
     MatchesRepository matchesRepository;
 
-    protected List<MatchEntity> getMatchEntitiesForCupStage(String cupName, String stageName) {
-        CupEntity cupWc2014 = cupsRepository.findByName(cupName);
-        CupStageEntity stage = cupStagesRepository.findByCupAndName(cupWc2014, stageName);
+    protected CupEntity getCurrentCup(String cupName) {
+        return cupsRepository.findByName(cupName);
+    }
 
-        return matchesRepository.findByCupAndStage(cupWc2014, stage);
+    protected List<MatchEntity> getMatchEntitiesForCupStage(CupEntity cupEntity, String stageName) {
+        CupStageEntity stage = cupStagesRepository.findByCupAndName(cupEntity, stageName);
+
+        return matchesRepository.findByCupAndStage(cupEntity, stage);
     }
 }

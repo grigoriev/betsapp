@@ -5,6 +5,8 @@
 <tiles:insertDefinition name="template">
     <tiles:putAttribute name="title" value="Lazybets: Matches"/>
     <tiles:putAttribute name="body">
+        <%--@elvariable id="currentCup" type="eu.grigoriev.persistence.entity.CupEntity"--%>
+        <%--@elvariable id="matches" type="java.util.List<eu.grigoriev.persistence.entity.MatchEntity>"--%>
 
         <div class="body">
 
@@ -16,6 +18,9 @@
                     <col width="25"/>
                     <col width="300"/>
                     <col width="50"/>
+                    <c:forEach var="user" items="${currentCup.userEntities}">
+                        <col width="50"/>
+                    </c:forEach>
                     <thead>
                     <tr>
                         <th>Date</th>
@@ -23,10 +28,12 @@
                         <th>ID</th>
                         <th>Match</th>
                         <th>Result</th>
+                        <c:forEach var="user" items="${currentCup.userEntities}">
+                            <th>${user.username}</th>
+                        </c:forEach>
                     </tr>
                     </thead>
                     <tbody>
-                        <%--@elvariable id="matches" type="java.util.List<eu.grigoriev.persistence.entity.MatchEntity>"--%>
                     <c:forEach var="match" items="${matches}">
                         <tr>
                             <td>${match.date}</td>
@@ -64,6 +71,10 @@
                                     </c:otherwise>
                                 </c:choose>
                             </td>
+                            <c:forEach var="user" items="${currentCup.userEntities}">
+                                <td>-:-</td>
+                            </c:forEach>
+
                         </tr>
                     </c:forEach>
                     </tbody>

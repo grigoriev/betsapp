@@ -1,6 +1,7 @@
 package eu.grigoriev.controller.cups;
 
 import eu.grigoriev.constants.Cups;
+import eu.grigoriev.persistence.entity.CupEntity;
 import eu.grigoriev.persistence.entity.MatchEntity;
 import eu.grigoriev.utils.mapping.Mapping;
 import org.springframework.stereotype.Controller;
@@ -23,7 +24,9 @@ public class Euro2016Controller extends CupController {
     public String groupStage(
             ModelMap modelMap
     ) {
-        List<MatchEntity> matchEntities = getMatchEntitiesForCupStage(Cups.EURO2016.NAME, Cups.EURO2016.STAGES.GROUPS_STAGE.NAME);
+        CupEntity currentCup = getCurrentCup(Cups.EURO2016.NAME);
+        modelMap.addAttribute("currentCup", currentCup);
+        List<MatchEntity> matchEntities = getMatchEntitiesForCupStage(currentCup, Cups.EURO2016.STAGES.GROUPS_STAGE.NAME);
         modelMap.addAttribute("matches", matchEntities);
 
         return "cup/matches";
@@ -33,7 +36,9 @@ public class Euro2016Controller extends CupController {
     public String roundOf16(
             ModelMap modelMap
     ) {
-        List<MatchEntity> matchEntities = getMatchEntitiesForCupStage(Cups.EURO2016.NAME, Cups.EURO2016.STAGES.ROUND_OF_16.NAME);
+        CupEntity currentCup = getCurrentCup(Cups.EURO2016.NAME);
+        modelMap.addAttribute("currentCup", currentCup);
+        List<MatchEntity> matchEntities = getMatchEntitiesForCupStage(currentCup, Cups.EURO2016.STAGES.ROUND_OF_16.NAME);
         modelMap.addAttribute("matches", matchEntities);
 
         return "cup/matches";
@@ -43,7 +48,9 @@ public class Euro2016Controller extends CupController {
     public String quarterFinal(
             ModelMap modelMap
     ) {
-        List<MatchEntity> matchEntities = getMatchEntitiesForCupStage(Cups.EURO2016.NAME, Cups.EURO2016.STAGES.QUARTER_FINAL.NAME);
+        CupEntity currentCup = getCurrentCup(Cups.EURO2016.NAME);
+        modelMap.addAttribute("currentCup", currentCup);
+        List<MatchEntity> matchEntities = getMatchEntitiesForCupStage(currentCup, Cups.EURO2016.STAGES.QUARTER_FINAL.NAME);
         modelMap.addAttribute("matches", matchEntities);
 
         return "cup/matches";
@@ -53,7 +60,9 @@ public class Euro2016Controller extends CupController {
     public String semiFinal(
             ModelMap modelMap
     ) {
-        List<MatchEntity> matchEntities = getMatchEntitiesForCupStage(Cups.EURO2016.NAME, Cups.EURO2016.STAGES.SEMI_FINAL.NAME);
+        CupEntity currentCup = getCurrentCup(Cups.EURO2016.NAME);
+        modelMap.addAttribute("currentCup", currentCup);
+        List<MatchEntity> matchEntities = getMatchEntitiesForCupStage(currentCup, Cups.EURO2016.STAGES.SEMI_FINAL.NAME);
         modelMap.addAttribute("matches", matchEntities);
 
         return "cup/matches";
@@ -63,7 +72,9 @@ public class Euro2016Controller extends CupController {
     public String finalStage(
             ModelMap modelMap
     ) {
-        List<MatchEntity> matchEntities = getMatchEntitiesForCupStage(Cups.EURO2016.NAME, Cups.EURO2016.STAGES.FINAL.NAME);
+        CupEntity currentCup = getCurrentCup(Cups.EURO2016.NAME);
+        modelMap.addAttribute("currentCup", currentCup);
+        List<MatchEntity> matchEntities = getMatchEntitiesForCupStage(currentCup, Cups.EURO2016.STAGES.FINAL.NAME);
         modelMap.addAttribute("matches", matchEntities);
 
         return "cup/matches";

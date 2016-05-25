@@ -30,9 +30,8 @@ table.team td:last-child {
 /* table.matches */
 table.matches {
     margin-top: 15px;
-    margin-bottom: 5px;
-    border: solid #999 2px;
-    box-shadow: 0 1px 1px #999;
+    margin-bottom: 15px;
+    border: 1px solid dimgray;
     background-color: ghostwhite;
 }
 
@@ -41,8 +40,8 @@ table.matches {
 }
 
 .matches td, .matches th {
-    border-right: 1px solid #999;
-    border-top: 1px solid #999;
+    border-right: 1px solid gray;
+    border-top: 1px solid gray;
     padding: 3px;
     text-align: center;
 }
@@ -80,7 +79,7 @@ table.matches .almostRightResult {
     margin-right: 0px;
     width: 28px;
     height: 20px;
-    border: 1px solid #000000;
+    border: 1px solid dimgray;
 }
 
 .Switzerland {
@@ -88,6 +87,6 @@ table.matches .almostRightResult {
     margin-right: 4px;
     width: 20px;
     height: 20px;
-    border: 1px solid #000000;
+    border: 1px solid dimgray;
 }
 /* flag */

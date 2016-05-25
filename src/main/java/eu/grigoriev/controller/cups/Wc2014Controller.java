@@ -32,7 +32,9 @@ public class Wc2014Controller extends CupController {
     public String groupStage(
             ModelMap modelMap
     ) {
-        List<MatchEntity> matchEntities = getMatchEntitiesForCupStage(Cups.WC2014.NAME, Cups.WC2014.STAGES.GROUPS_STAGE.NAME);
+        CupEntity currentCup = getCurrentCup(Cups.WC2014.NAME);
+        modelMap.addAttribute("currentCup", currentCup);
+        List<MatchEntity> matchEntities = getMatchEntitiesForCupStage(currentCup, Cups.WC2014.STAGES.GROUPS_STAGE.NAME);
         modelMap.addAttribute("matches", matchEntities);
 
         return "cup/matches";
@@ -42,7 +44,9 @@ public class Wc2014Controller extends CupController {
     public String roundOf16(
             ModelMap modelMap
     ) {
-        List<MatchEntity> matchEntities = getMatchEntitiesForCupStage(Cups.WC2014.NAME, Cups.WC2014.STAGES.ROUND_OF_16.NAME);
+        CupEntity currentCup = getCurrentCup(Cups.WC2014.NAME);
+        modelMap.addAttribute("currentCup", currentCup);
+        List<MatchEntity> matchEntities = getMatchEntitiesForCupStage(currentCup, Cups.WC2014.STAGES.ROUND_OF_16.NAME);
         modelMap.addAttribute("matches", matchEntities);
 
         return "cup/matches";
@@ -52,7 +56,9 @@ public class Wc2014Controller extends CupController {
     public String quarterFinal(
             ModelMap modelMap
     ) {
-        List<MatchEntity> matchEntities = getMatchEntitiesForCupStage(Cups.WC2014.NAME, Cups.WC2014.STAGES.QUARTER_FINAL.NAME);
+        CupEntity currentCup = getCurrentCup(Cups.WC2014.NAME);
+        modelMap.addAttribute("currentCup", currentCup);
+        List<MatchEntity> matchEntities = getMatchEntitiesForCupStage(currentCup, Cups.WC2014.STAGES.QUARTER_FINAL.NAME);
         modelMap.addAttribute("matches", matchEntities);
 
         return "cup/matches";
@@ -62,7 +68,9 @@ public class Wc2014Controller extends CupController {
     public String semiFinal(
             ModelMap modelMap
     ) {
-        List<MatchEntity> matchEntities = getMatchEntitiesForCupStage(Cups.WC2014.NAME, Cups.WC2014.STAGES.SEMI_FINAL.NAME);
+        CupEntity currentCup = getCurrentCup(Cups.WC2014.NAME);
+        modelMap.addAttribute("currentCup", currentCup);
+        List<MatchEntity> matchEntities = getMatchEntitiesForCupStage(currentCup, Cups.WC2014.STAGES.SEMI_FINAL.NAME);
         modelMap.addAttribute("matches", matchEntities);
 
         return "cup/matches";
@@ -72,7 +80,9 @@ public class Wc2014Controller extends CupController {
     public String finalStage(
             ModelMap modelMap
     ) {
-        List<MatchEntity> matchEntities = getMatchEntitiesForCupStage(Cups.WC2014.NAME, Cups.WC2014.STAGES.FINAL.NAME);
+        CupEntity currentCup = getCurrentCup(Cups.WC2014.NAME);
+        modelMap.addAttribute("currentCup", currentCup);
+        List<MatchEntity> matchEntities = getMatchEntitiesForCupStage(currentCup, Cups.WC2014.STAGES.FINAL.NAME);
         modelMap.addAttribute("matches", matchEntities);
 
         return "cup/matches";
