@@ -33,10 +33,11 @@ table.matches {
     margin-bottom: 5px;
     border: solid #999 2px;
     box-shadow: 0 1px 1px #999;
+    background-color: ghostwhite;
 }
 
 .matches tbody:hover td[rowspan], .matches tr:hover td {
-    background: #fbf8e9;
+    background: lightyellow;
 }
 
 .matches td, .matches th {
@@ -48,7 +49,7 @@ table.matches {
 
 .matches th {
     border-top: none;
-    background-color: #dce9f9;
+    background-color: lightsteelblue;
 }
 
 table.matches td:first-child, table.matches th:first-child {
@@ -59,6 +60,18 @@ table.matches td:last-child, table.matches th:last-child {
     border-right: none;
 }
 
+table.matches .result {
+    background-color: gainsboro;
+}
+
+table.matches .rightResult {
+    background-color: wheat;
+    font-weight: bold;
+}
+
+table.matches .almostRightResult {
+    background-color: lightsteelblue;
+}
 /* table.matches */
 
 /* flag */

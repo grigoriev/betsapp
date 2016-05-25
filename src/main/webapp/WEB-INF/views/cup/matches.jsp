@@ -1,4 +1,3 @@
-<%@ page import="java.util.Date" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
@@ -9,14 +8,14 @@
 
         <div class="body">
 
-            <div>
+            <div class="table-responsive">
 
                 <table class="matches">
                     <col width="100"/>
-                    <col width="120"/>
-                    <col width="20"/>
-                    <col width="370"/>
-                    <col width="59"/>
+                    <col width="100"/>
+                    <col width="25"/>
+                    <col width="300"/>
+                    <col width="50"/>
                     <thead>
                     <tr>
                         <th>Date</th>
@@ -44,7 +43,7 @@
                                     </tr>
                                 </table>
                             </td>
-                            <td>
+                            <td class="result">
                                 <c:choose>
                                     <c:when test="${match.finished}">
                                         <c:choose>
