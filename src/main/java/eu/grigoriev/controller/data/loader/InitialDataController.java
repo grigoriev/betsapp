@@ -109,6 +109,9 @@ public class InitialDataController extends AbstractController {
     private TeamEntity usa;
     private TeamEntity wales;
 
+    private TeamEntity fcBarcelona;
+    private TeamEntity fcBayernMuenchen;
+
     private CupStageEntity wc2014GroupStage;
     private CupStageEntity wc2014RoundOf16;
     private CupStageEntity wc2014QuarterFinal;
@@ -122,6 +125,7 @@ public class InitialDataController extends AbstractController {
 
     ArrayList<MatchEntity> wc2014Matches = new ArrayList<>();
     ArrayList<MatchEntity> euro2016Matches = new ArrayList<>();
+
 
     @RequestMapping(method = {RequestMethod.GET, RequestMethod.HEAD})
     public String index() {
@@ -339,8 +343,8 @@ public class InitialDataController extends AbstractController {
     }
 
     public void teamsClub() {
-        TeamEntity fcBarcelona = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.Club.FC_BARCELONA, teamTypeClub)));
-        TeamEntity fcBayern = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.Club.FC_BAYERN, teamTypeClub)));
+        fcBarcelona = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.Club.FC_BARCELONA, teamTypeClub)));
+        fcBayernMuenchen = teamsRepository.findById(teamsRepository.save(new TeamEntity(Teams.Club.FC_BAYERN_MUENCHEN, teamTypeClub)));
     }
 
     public void matchesWc2014() {

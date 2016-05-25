@@ -57,6 +57,6 @@ public class Teams {
 
     public static class Club {
         public static final String FC_BARCELONA= "FC Barcelona";
-        public static final String FC_BAYERN = "FC Bayern";
+        public static final String FC_BAYERN_MUENCHEN = "FC Bayern München";
     }
 }
