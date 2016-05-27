@@ -54,6 +54,9 @@ public class InitialDataController extends AbstractController {
     @Autowired
     UsersRepository usersRepository;
 
+    @Autowired
+    BetsRepository betsRepository;
+
     private CupEntity cupWc2014;
     private CupEntity cupEuro2016;
     private TeamTypeEntity teamTypeNational;
@@ -142,9 +145,11 @@ public class InitialDataController extends AbstractController {
         teamsNational();
         teamsClub();
         matchesWc2014();
+        betsWc2014();
         groupsWc2014();
         matchesEuro2016();
         groupsEuro2016();
+        betsEuro2016();
 
         return new SuccessResponse();
     }
@@ -497,6 +502,33 @@ public class InitialDataController extends AbstractController {
         }
     }
 
+    public void betsWc2014() {
+        int serialNumber = 0;
+        UserEntity ab = usersRepository.findByName("ab");
+        UserEntity ac = usersRepository.findByName("ac");
+        UserEntity ap = usersRepository.findByName("ap");
+        UserEntity ay = usersRepository.findByName("ay");
+        UserEntity en = usersRepository.findByName("en");
+        UserEntity ik = usersRepository.findByName("ik");
+        UserEntity mg = usersRepository.findByName("mg");
+        UserEntity sg = usersRepository.findByName("sg");
+        UserEntity sn = usersRepository.findByName("sn");
+        UserEntity sp = usersRepository.findByName("sp");
+        UserEntity vb = usersRepository.findByName("vb");
+
+        betsRepository.save(new BetEntity(wc2014Matches.get(serialNumber), 3, 1, ab));
+        betsRepository.save(new BetEntity(wc2014Matches.get(serialNumber), 2, 0, ac));
+        betsRepository.save(new BetEntity(wc2014Matches.get(serialNumber), 3, 1, ap));
+        betsRepository.save(new BetEntity(wc2014Matches.get(serialNumber), 3, 1, ay));
+        betsRepository.save(new BetEntity(wc2014Matches.get(serialNumber), 3, 2, en));
+        betsRepository.save(new BetEntity(wc2014Matches.get(serialNumber), 2, 1, ik));
+        betsRepository.save(new BetEntity(wc2014Matches.get(serialNumber), 2, 0, mg));
+        betsRepository.save(new BetEntity(wc2014Matches.get(serialNumber), 3, 1, sg));
+        betsRepository.save(new BetEntity(wc2014Matches.get(serialNumber), 3, 1, sn));
+        betsRepository.save(new BetEntity(wc2014Matches.get(serialNumber), 2, 1, sp));
+        betsRepository.save(new BetEntity(wc2014Matches.get(serialNumber), 1, 0, vb));
+    }
+
     public void groupsWc2014() {
     }
 
@@ -559,6 +591,11 @@ public class InitialDataController extends AbstractController {
         euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-07-07 19:00:00"), null, null, matchTypeStandard, euro2016SemiFinal))));
 
         euro2016Matches.add(matchesRepository.findById(matchesRepository.save(new MatchEntity(serialNumber++, cupEuro2016, Timestamp.valueOf("2016-07-10 19:00:00"), null, null, matchTypeStandard, euro2016Final))));
+    }
+
+    public void betsEuro2016() {
+        int serialNumber = 0;
+        //betsRepository.save(new BetEntity(wc2014Matches.get(serialNumber), 3, 1, usersRepository.findByName("ab")));
     }
 
     public void groupsEuro2016() {

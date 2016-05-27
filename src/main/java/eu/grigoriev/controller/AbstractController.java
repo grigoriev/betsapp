@@ -8,6 +8,7 @@ import eu.grigoriev.persistence.service.UsersRepository;
 import eu.grigoriev.utils.security.SecurityRules;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -35,6 +36,18 @@ public abstract class AbstractController {
     @ModelAttribute("admin")
     public Boolean modelAttrAdmin() {
         return SecurityRules.isAdmin();
+    }
+
+    @ModelAttribute("currentUser")
+    public UserEntity modelCurrentUser() {
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        if (securityContext == null) {
+            return null;
+        } else {
+            Authentication authentication = securityContext.getAuthentication();
+
+            return usersRepository.findByName(authentication.getName());
+        }
     }
 
     @ModelAttribute("cups")

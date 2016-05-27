@@ -6,7 +6,9 @@
     <tiles:putAttribute name="title" value="Lazybets: Matches"/>
     <tiles:putAttribute name="body">
         <%--@elvariable id="currentCup" type="eu.grigoriev.persistence.entity.CupEntity"--%>
+        <%--@elvariable id="currentUser" type="eu.grigoriev.persistence.entity.UserEntity"--%>
         <%--@elvariable id="matches" type="java.util.List<eu.grigoriev.persistence.entity.MatchEntity>"--%>
+        <%--@elvariable id="bet" type="eu.grigoriev.persistence.entity.BetEntity"--%>
 
         <div class="body">
 
@@ -89,9 +91,38 @@
                                 </c:choose>
                             </td>
                             <c:forEach var="user" items="${currentCup.userEntities}">
-                                <td>-:-</td>
-                            </c:forEach>
 
+                                <c:set var="bet" value="${null}"/>
+                                <c:forEach var="tmp" items="${match.betEntities}">
+                                    <c:if test="${tmp.userEntity.id == user.id}">
+                                        <c:set var="bet" value="${tmp}"/>
+                                    </c:if>
+                                </c:forEach>
+
+                                <c:choose>
+                                    <c:when test="${bet == null && user.id == currentUser.id}">
+                                        <td>
+                                            <input type="text" class="userBet" value="-:-"/>
+                                        </td>
+                                    </c:when>
+                                    <c:when test="${bet != null && user.id == currentUser.id}">
+                                        <td>
+                                            <input type="text" class="userBet" value="${bet.hostScores}:${bet.guestScores}"/>
+                                        </td>
+                                    </c:when>
+                                    <c:when test="${bet != null && user.id != currentUser.id}">
+                                        <td>
+                                                ${bet.hostScores}:${bet.guestScores}
+                                        </td>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <td>
+                                            -:-
+                                        </td>
+                                    </c:otherwise>
+                                </c:choose>
+
+                            </c:forEach>
                         </tr>
                     </c:forEach>
                     </tbody>

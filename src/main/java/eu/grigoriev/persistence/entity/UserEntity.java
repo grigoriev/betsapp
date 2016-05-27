@@ -3,6 +3,7 @@ package eu.grigoriev.persistence.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 @Table(name = "users")
@@ -52,12 +53,7 @@ public class UserEntity implements Serializable {
     )
     private List<CupEntity> cupEntities;
 
-    @ManyToMany
-    @JoinTable(
-            name = "bets_users",
-            joinColumns = @JoinColumn(name = "bet_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id")
-    )
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "userEntity")
     private List<BetEntity> betEntities;
 
     public UserEntity() {

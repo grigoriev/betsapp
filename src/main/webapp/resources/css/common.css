@@ -90,3 +90,8 @@ table.matches .almostRightResult {
     border: 1px solid dimgray;
 }
 /* flag */
+
+input.userBet {
+    width: 40px;
+    text-align: center;
+}

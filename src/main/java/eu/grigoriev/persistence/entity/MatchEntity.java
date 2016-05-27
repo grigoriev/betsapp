@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 @Entity
@@ -74,6 +75,9 @@ public class MatchEntity implements Serializable {
     @Column(name = "guest_penalty_series_scores")
     private Integer guestPenaltySeriesScores;
 
+    @Column(name = "bet_allowed")
+    private Boolean betAllowed;
+
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "matchEntity")
     private List<BetEntity> betEntities;
 
@@ -113,6 +117,14 @@ public class MatchEntity implements Serializable {
 
     public void setCupEntity(CupEntity cupEntity) {
         this.cupEntity = cupEntity;
+    }
+
+    public Timestamp getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Timestamp startTime) {
+        this.startTime = startTime;
     }
 
     public TeamEntity getHostTeamEntity() {
@@ -201,6 +213,14 @@ public class MatchEntity implements Serializable {
 
     public void setGuestPenaltySeriesScores(Integer guestPenaltySeriesScores) {
         this.guestPenaltySeriesScores = guestPenaltySeriesScores;
+    }
+
+    public Boolean getBetAllowed() {
+        return betAllowed;
+    }
+
+    public void setBetAllowed(Boolean betAllowed) {
+        this.betAllowed = betAllowed;
     }
 
     public List<BetEntity> getBetEntities() {
