@@ -102,12 +102,20 @@
                                 <c:choose>
                                     <c:when test="${bet == null && user.id == currentUser.id}">
                                         <td>
-                                            <input type="text" class="userBet" value="-:-"/>
+                                            <input type="text"
+                                                   <c:if test="${!match.betAllowed}">
+                                                       disabled="disabled"
+                                                   </c:if>
+                                                   class="userBet" value="-:-"/>
                                         </td>
                                     </c:when>
                                     <c:when test="${bet != null && user.id == currentUser.id}">
                                         <td>
-                                            <input type="text" class="userBet" value="${bet.hostScores}:${bet.guestScores}"/>
+                                            <input type="text"
+                                                    <c:if test="${!match.betAllowed}">
+                                                        disabled="disabled"
+                                                    </c:if>
+                                                   class="userBet" value="${bet.hostScores}:${bet.guestScores}"/>
                                         </td>
                                     </c:when>
                                     <c:when test="${bet != null && user.id != currentUser.id}">
